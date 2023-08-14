@@ -3,33 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping-pong</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <title>Pong game!</title>
+    <link rel="stylesheet" href="./Styles/styles.css">
 </head>
 <body>
-    <audio id="ballTap">
-        <source src="./Audio/mixkit-one-clap-481.wav">
-    </audio>
-    <audio id="gameWon">
-        <source src="./Audio/won.wav">
-    </audio>
-    <audio id="gameLost">
-        <source src="./Audio/loseFull.wav">
-    </audio>
-    <audio id="pointScore">
-        <source src="./Audio/succes.wav">
-    </audio>
-    <audio id="pointLose">
-        <source src="./Audio/lose.wav">
-    </audio>
-    <audio id="backgroundMusic">
-        <source src="./Audio/background_1.mp3">
-    </audio>
 
-    <canvas id="board"></canvas>
-    <br>
-    <input type="button" value="Turn on background music!" id="backgroundMusicButton">
+    <div id="choose-game-mode">
+        <h1 id="pong-head-text">Pong Game</h1>
 
-    <script type="module" src="main.js"></script>
+        <div id="mode-pvp">
+            <img src="./Assets/player.png" id="pvp-image"/>
+            <input id="pvp-button" type="button" value="Player vs Player" class="mode-buttons">
+        </div>
+
+        <div id="mode-pvc">
+            <img src="./Assets/computer.png" id="pvc-image"/>
+            <input id="pvc-button" type="button" value="Player vs Computer" class="mode-buttons">
+        </div>
+        <h1 id="result"></h1>
+
+        <div id="choose-difficulty">
+            <input id="back-button" type="button" value="Back">
+
+            <img src="./Assets/helmet.png"/>
+            <input id="Easy" type="button" value="Easy" class="difficulty-button">
+            <br>
+            <img src="./Assets/beret.png"/>
+            <input id="Medium" type="button" value="Medium" class="difficulty-button">
+            <br>
+            <img src="./Assets/tank.png"/>
+            <input id="Hard" type="button" value="Hard" class="difficulty-button">
+            <br>
+            <img src="./Assets/star.png"/>
+            <input id="Insane" type="button" value="Insane" class="difficulty-button">
+            <br>
+            <img src="./Assets/greek.png"/>
+            <input id="Impossible" type="button" value="Impossible" class="difficulty-button">
+        </div>
+
+        <canvas id="board"></canvas>
+
+        <h2 id="created-by-text">Created by Alex-G-R</h2>
+    </div>
+
+
+    <script type="module" src="./Scripts/main.js"></script>
 </body>
 </html>
