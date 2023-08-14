@@ -1,0 +1,109 @@
+*{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    font-family: Arial;
+}
+
+img{
+    max-width: 120px;
+    max-height: 120px;
+    vertical-align: middle;
+}
+
+
+#pong-head-text{
+    font-size: 6em;
+    color: white;
+    font-weight: bold;
+}
+
+#choose-game-mode{
+    position: absolute;
+    background: linear-gradient(135deg, #f10505, #2100f9);;
+    height:100%;
+    width:100%;
+}
+
+#pvp-button, #pvc-button{
+    margin-top: 150px;
+    height: 120px;
+    width: 300px;
+    border: 5px black solid;
+    color: white;
+    font-size: 2em;
+    background-color: #dcb8ff;
+    cursor: pointer;
+}
+#pvc-button {
+    margin-top: 50px;
+}
+
+#choose-difficulty {
+    display: none;
+}
+
+.difficulty-button{
+    margin-top: 150px;
+    height: 120px;
+    width: 300px;
+    border: 5px black solid;
+    color: white;
+    font-size: 2em;
+    background-color: #dcb8ff;
+    cursor: pointer;
+    margin-top:20px;
+}
+#Easy{
+    background-color: lightgreen;
+}
+#Medium{
+    background-color:orange;
+}
+#Hard{
+    background-color: rgb(213, 0, 0);
+}
+#Insane{
+    background-color: rgb(88, 0, 0);
+}
+#Impossible{
+    background-color: black;
+}
+
+#back-button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 80px;
+    width: 120px;
+    border: 3px black solid;
+    background-color: rgba(113, 105, 230, 0.577);
+    color: white;
+    font-size: 1.5em;
+}
+
+#board{
+    display: none;
+    position: absolute;
+    margin-top: 20px;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+}
+
+#result{
+    color: white;
+    margin-top: 50px;
+}
+
+#created-by-text{
+    position: absolute;
+    bottom: 20px;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+}
