@@ -48,6 +48,7 @@ window.addEventListener('load', e => {
     setInterval(update, 1000/60);
 });
 
+
 window.addEventListener('keydown', changeDirection);
 window.addEventListener('keyup', stopMovment);
 
@@ -175,6 +176,13 @@ function checkIfGameEnded() {
         printScore();
     }
 }
+
+// background music
+let btn = document.getElementById("backgroundMusicButton");
+
+btn.addEventListener("click", e => {
+    document.getElementById("backgroundMusic").play();
+})
 
 
 
