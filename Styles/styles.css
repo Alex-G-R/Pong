@@ -106,3 +106,8 @@ img{
     color: white;
     font-weight: bold;
 }
+#credits-image{
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+}
