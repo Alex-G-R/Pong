@@ -1,50 +1,35 @@
-// Function to load a script dynamically
-function loadScript(scriptPath) {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = scriptPath;
-        script.type = 'text/javascript'; // Set the script type explicitly
-        script.onload = resolve;
-        script.onerror = reject;
-        document.body.appendChild(script);
-    });
-}
+
+import { easy } from "./easy.js";
+import { medium } from "./medium.js";
+import { hard } from "./hard.js";
+import { insane } from "./insane.js";
+import { impossible } from "./impossible.js";
+import { pvp } from "./pvp.js";
+
 
 // Button click event handlers
 document.getElementById('pvp-button').addEventListener('click', () => {
-    loadScript('./Scripts/pvp.js')
-        .then(() => console.log('Script PvP loaded successfully'))
-        .catch(error => console.error('Script PvP loading failed', error));
+    pvp();
 });
 
 document.getElementById('Easy').addEventListener('click', () => {
-    loadScript('./Scripts/easy.js')
-        .then(() => console.log('Script Easy loaded successfully'))
-        .catch(error => console.error('Script Easy loading failed', error));
+    easy();
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    loadScript('./Scripts/medium.js')
-        .then(() => console.log('Script Medium loaded successfully'))
-        .catch(error => console.error('Script Medium loading failed', error));
+    medium();
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    loadScript('./Scripts/hard.js')
-        .then(() => console.log('Script Hard loaded successfully'))
-        .catch(error => console.error('Script Hard loading failed', error));
+    hard();
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    loadScript('./Scripts/insane.js')
-        .then(() => console.log('Script Insane loaded successfully'))
-        .catch(error => console.error('Script Insane loading failed', error));
+    insane();
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    loadScript('./Scripts/impossible.js')
-        .then(() => console.log('Script Impossible loaded successfully'))
-        .catch(error => console.error('Script Impossible loading failed', error));
+    impossible();
 });
 
 // Click button change color effect
@@ -62,6 +47,7 @@ modeButtons.forEach((button) =>{
 // Choose difficulty after choosing PVC game mode
 const pvpMode = document.getElementById("mode-pvp");
 const pvcMode = document.getElementById("mode-pvc");
+const campainMode = document.getElementById("mode-campain");
 const difficultyChoice = document.getElementById("choose-difficulty");
 
 const pvcButton = document.getElementById("pvc-button");
@@ -69,6 +55,7 @@ const pvcButton = document.getElementById("pvc-button");
 pvcButton.addEventListener("click", e => {
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
+    campainMode.style.display = "none";
     difficultyChoice.style.display = "block";
 })
 
