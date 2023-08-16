@@ -95,7 +95,7 @@ img{
     height: 180px;
     width: 180px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff1e00, #4e0101);
+    background: linear-gradient(135deg, #ff0000, #5d0202);
     border: white 5px solid;
     cursor: pointer;
 } 
