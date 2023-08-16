@@ -55,6 +55,7 @@ img{
     cursor: pointer;
 }
 #Easy{
+    margin-top: 40px;
     background-color: lightgreen;
 }
 #Medium{
@@ -74,6 +75,37 @@ img{
     display: none;
 }
 
+#menu-panel{
+    position: absolute;
+    height: 600px;
+    width: 900px;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 75px;
+    background: linear-gradient(135deg, #ff00e1, #00f7ef);
+    border-radius: 10%;
+    border: white 5px solid;
+    display: flex;
+}
+
+.level{
+    margin-top:70px;
+    margin-bottom:70px;
+    margin-left: 20px;
+    margin-right: 10px;
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f6ff00, #f70000);
+    border: white 5px solid;
+    cursor: pointer;
+} 
+.level h1 {
+    font-size: 6em;
+    padding: 35px;
+    color: white;
+}
+
 .back-button{
     position: absolute;
     left: 0;
@@ -87,6 +119,7 @@ img{
     color: white;
     font-size: 1.5em;
     display: none;
+    cursor: pointer;
 }
 
 #board{
