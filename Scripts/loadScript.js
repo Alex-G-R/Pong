@@ -1,10 +1,6 @@
 
-import { easy } from "./easy.js";
-import { medium } from "./medium.js";
-import { hard } from "./hard.js";
-import { insane } from "./insane.js";
-import { impossible } from "./impossible.js";
 import { pvp } from "./pvp.js";
+import { setup } from "./setup.js"
 
 
 // Button click event handlers
@@ -13,23 +9,23 @@ document.getElementById('pvp-button').addEventListener('click', () => {
 });
 
 document.getElementById('Easy').addEventListener('click', () => {
-    easy();
+    setup("Easy", 3, 0.2, "lightgreen");
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    medium();
+    setup("Medium", 5.5, 0.28, "orange");
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    hard();
+    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)");
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    insane();
+    setup("Insane", 11, 0.45, "rgb(88, 0, 0)");
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    impossible();
+    setup("Impossible", 18, 0.6, "black");
 });
 
 // Click button change color effect
@@ -169,8 +165,6 @@ levelEight.addEventListener("click", e => {
     levelHardnes.style.fontSize = "3em";
     levelHardnes.style.backgroundColor = "black";
 });
-
-
 
 levels.forEach((level) => {
     level.addEventListener("click", e => {

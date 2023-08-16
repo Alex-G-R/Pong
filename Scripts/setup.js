@@ -1,8 +1,5 @@
-export function insane() {
-
-    // Start PVC game
-    const insaneBtn = document.getElementById("Insane");
-
+export function setup(botDifficulty, botSpeed, ballAcceleration, botColor) {
+    
     // board
     let blockSize = 90;
     let rows = 7;
@@ -42,7 +39,7 @@ export function insane() {
     const difficultyChoice = document.getElementById("choose-difficulty");
 
 
-    opponentSpeed = 11; // Set speed of the opponent
+    opponentSpeed = botSpeed; // Set speed of the opponent
 
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
@@ -62,10 +59,10 @@ export function insane() {
     opponentX = board.width - opponentWidth - 60; // Adjust the value as needed
     opponentY = ((rows * blockSize) / 2) - (opponentHeight / 2);
 
-
     let updateInterval;
 
     updateInterval = setInterval(update, 1000/60);
+
 
 
     window.addEventListener('keydown', changeDirection);
@@ -78,7 +75,7 @@ export function insane() {
         context.fillStyle = 'white';
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
 
-        context.fillStyle = 'rgb(88, 0, 0)';
+        context.fillStyle = botColor;
         context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
 
         // buffer zone
@@ -148,7 +145,7 @@ export function insane() {
         context.fillStyle = 'white';
         context.font = '24px Arial';
         context.fillText(`Player: ${playerScore}`, 20, 30);
-        context.fillText(`Insane bot: ${opponentScore}`, board.width - 200, 30);
+        context.fillText(botDifficulty+` bot: ${opponentScore}`, board.width - 200, 30);
     }
 
     function changeDirection(event) {
@@ -167,15 +164,15 @@ export function insane() {
         console.log("Before:", ballVelocityX, ballVelocityY); // Debugging output
 
         if (Math.sign(ballVelocityX) === -1) {
-            ballVelocityX = ballVelocityX - 0.45; // Set a fixed value
+            ballVelocityX = ballVelocityX - ballAcceleration; // Set a fixed value
         } else {
-            ballVelocityX = ballVelocityX + 0.45; // Set a fixed value
+            ballVelocityX = ballVelocityX + ballAcceleration; // Set a fixed value
         }
 
         if (Math.sign(ballVelocityY) === -1) {
-            ballVelocityY = ballVelocityY - 0.45; // Set a fixed value
+            ballVelocityY = ballVelocityY - ballAcceleration; // Set a fixed value
         } else {
-            ballVelocityY = ballVelocityY + 0.45; // Set a fixed value
+            ballVelocityY = ballVelocityY + ballAcceleration; // Set a fixed value
         }
 
         console.log("After:", ballVelocityX, ballVelocityY); // Debugging output
@@ -190,14 +187,14 @@ export function insane() {
 
     function checkIfGameEnded() {
         if(playerScore == 3){
-            alert("You won with insane bot! Congratulations!")
+            alert("You won with "+botDifficulty+ "bot! Congratulations!");
             clearInterval(updateInterval);
             board.style.display = "none";
             pvpMode.style.display = "block";
-            pvcMode.style.display = "block";
             campainMode.style.display = "block";
+            pvcMode.style.display = "block";
         } else if (opponentScore == 3){
-            alert("You lost with insane bot! Try again!")
+            alert("You lost with "+botDifficulty+" bot! Try again!");
             clearInterval(updateInterval);
             board.style.display = "none";
             pvpMode.style.display = "block";
