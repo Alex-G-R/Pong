@@ -12,7 +12,6 @@ img{
     vertical-align: middle;
 }
 
-
 #pong-head-text{
     font-size: 6em;
     color: white;
@@ -96,7 +95,7 @@ img{
     height: 180px;
     width: 180px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f6ff00, #f70000);
+    background: linear-gradient(135deg, #ff1e00, #4e0101);
     border: white 5px solid;
     cursor: pointer;
 } 
@@ -104,6 +103,73 @@ img{
     font-size: 6em;
     padding: 35px;
     color: white;
+}
+
+#level-specs{
+    position: absolute;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 40px;
+    width: 600px;
+    height: 500px;
+    border-radius: 20%;
+    background: linear-gradient(135deg, #8A2BE2, #FF69B4);
+    border: 5px white solid;
+    display: none;
+} #level-text{
+    position: absolute;
+    color: white;
+    font-size: 5em;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    top: 4%;
+} #start-level{
+    position: absolute;
+    color: white;
+    background: rgb(62, 182, 62);
+    height: 100px;
+    width: 250px;
+    font-size: 4em;
+    left: 72%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    border: 3px white solid;
+    border-radius: 20%;
+    bottom: 5%;
+} #difficulty-show {
+    position: absolute;
+    color: white;
+    background: lightgreen;
+    height: 100px;
+    width: 250px;
+    font-size: 4em;
+    left: 27%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    border: 3px white solid;
+    border-radius: 20%;
+    bottom: 5%;
+} #level-descr{
+    position: absolute;
+    width: 550px;
+    font-size: 1.4em;
+    color: white;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    top: 35%;
+}
+
+#close{
+    height: 80px;
+    width: 80px;
+    background-color: red;
+    margin-left: 490px;
+    margin-top: 20px;
+    border-radius: 50%;
+    border: 3px white solid;
+    cursor: pointer;
+} #close h1 {
+    font-size: 3.5em;
+    color: white;
+    padding: 9px;
 }
 
 .back-button{
