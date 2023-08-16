@@ -1,4 +1,6 @@
-export function setup(botDifficulty, botSpeed, ballAcceleration, botColor) {
+export function setup(
+    botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors
+    ) {
     
     // board
     let blockSize = 90;
@@ -69,14 +71,38 @@ export function setup(botDifficulty, botSpeed, ballAcceleration, botColor) {
     window.addEventListener('keyup', stopMovment);
 
     function update() {
-        context.fillStyle = 'black';
+        if(!randomiseColors){
+            context.fillStyle = 'black';
+        } else {
+            context.fillStyle = randomColor();
+        }
         context.fillRect(0, 0, board.width, board.height);
 
-        context.fillStyle = 'white';
+        if(!randomiseColors){
+            context.fillStyle = 'white';
+        } else {
+            context.fillStyle = randomColor();
+        }
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
 
-        context.fillStyle = botColor;
-        context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+        if(!border){
+            if(!randomiseColors){
+                context.fillStyle = botColor;
+            } else {
+                context.fillStyle = randomColor();
+            }
+            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+        } else {
+            context.fillStyle = 'white';
+            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+
+
+            context.fillStyle = 'white';
+            context.fillRect(opponentX - 2, opponentY - 2, opponentWidth + 4, opponentHeight + 4);
+
+            context.fillStyle = 'black';
+            context.fillRect(opponentX + 1, opponentY + 1, opponentWidth - 2, opponentHeight - 2);
+        }
 
         // buffer zone
         const bufferZone = opponentHeight / 4; 
@@ -127,7 +153,11 @@ export function setup(botDifficulty, botSpeed, ballAcceleration, botColor) {
         }
 
         // draw the ball
-        context.fillStyle = 'blue';
+        if(!randomiseColors){
+            context.fillStyle = 'blue';
+        } else {
+            context.fillStyle = randomColor();
+        }
         context.fillRect(ballX, ballY, ballSize, ballSize);
 
         playerY += velocityY;
@@ -202,5 +232,16 @@ export function setup(botDifficulty, botSpeed, ballAcceleration, botColor) {
             pvcMode.style.display = "block";
         }
     }
+
+    function randomColor () {
+        let randomRGB;
+        let x = Math.floor(Math.random()*255)
+        let y = Math.floor(Math.random()*255)
+        let z = Math.floor(Math.random()*255)
+        randomRGB = 'rgb(' + x + ', '+ y +', '+ z +')'
+    
+        return(randomRGB);
+    }
+     
 
 }

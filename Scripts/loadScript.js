@@ -9,23 +9,23 @@ document.getElementById('pvp-button').addEventListener('click', () => {
 });
 
 document.getElementById('Easy').addEventListener('click', () => {
-    setup("Easy", 3, 0.2, "lightgreen");
+    setup("Easy", 3, 0.2, "lightgreen", false, false);
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    setup("Medium", 5.5, 0.28, "orange");
+    setup("Medium", 5.5, 0.28, "orange", false, false);
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)");
+    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false);
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    setup("Insane", 11, 0.45, "rgb(88, 0, 0)");
+    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false);
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    setup("Impossible", 18, 0.6, "black");
+    setup("Impossible", 18, 0.6, "black", true, false);
 });
 
 // Click button change color effect
@@ -109,11 +109,14 @@ const levelNumber = document.getElementById("level-text");
 const levelDescr = document.getElementById("level-descr");
 const levelHardnes = document.getElementById("difficulty-show")
 
+let selectedLevel = 0;
+
 levelOne.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 1";
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Easy";
     levelHardnes.style.backgroundColor = "lightgreen";
+    selectedLevel = 1;
 });
 
 levelTwo.addEventListener("click", e => {
@@ -121,6 +124,7 @@ levelTwo.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Medium";
     levelHardnes.style.backgroundColor = "orange";
+    selectedLevel = 2;
 });
 
 levelThree.addEventListener("click", e => {
@@ -128,6 +132,7 @@ levelThree.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Medium";
     levelHardnes.style.backgroundColor = "orange";
+    selectedLevel = 3;
 });
 
 levelFour.addEventListener("click", e => {
@@ -135,6 +140,7 @@ levelFour.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Hard";
     levelHardnes.style.backgroundColor = "rgb(213, 0, 0)";
+    selectedLevel = 4;
 });
 
 levelFive.addEventListener("click", e => {
@@ -142,6 +148,7 @@ levelFive.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Hard";
     levelHardnes.style.backgroundColor = "rgb(213, 0, 0)";
+    selectedLevel = 5;
 });
 
 levelSix.addEventListener("click", e => {
@@ -149,6 +156,7 @@ levelSix.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Insane";
     levelHardnes.style.backgroundColor = "rgb(88, 0, 0)";
+    selectedLevel = 6;
 });
 
 levelSeven.addEventListener("click", e => {
@@ -156,6 +164,7 @@ levelSeven.addEventListener("click", e => {
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
     levelHardnes.value = "Insane";
     levelHardnes.style.backgroundColor = "rgb(88, 0, 0)";
+    selectedLevel = 7;
 });
 
 levelEight.addEventListener("click", e => {
@@ -164,6 +173,14 @@ levelEight.addEventListener("click", e => {
     levelHardnes.value = "Impossible";
     levelHardnes.style.fontSize = "3em";
     levelHardnes.style.backgroundColor = "black";
+    selectedLevel = 8;
+});
+
+// Start campain levels
+const startLevel = document.getElementById("start-level");
+
+startLevel.addEventListener("click", e => {
+    startCampainLevel(selectedLevel);
 });
 
 levels.forEach((level) => {
@@ -174,3 +191,12 @@ levels.forEach((level) => {
 closeLevelSpec.addEventListener("click", e => {
     levelSpec.style.display = "none";
 });
+
+function startCampainLevel(level) {
+    levelSpec.style.display = "none";
+    campainMenu.style.display = "none";
+    if(level == 1){
+        setup("Level one", 3, 0.2, "lightgreen", false, true)
+        levelOne.style.background = "linear-gradient(135deg, #44ff00, #074001)";
+    }
+}
