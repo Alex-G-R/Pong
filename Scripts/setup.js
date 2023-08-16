@@ -1,5 +1,8 @@
 export function setup(
-    botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors
+    // Basic PVC
+    botDifficulty, botSpeed, ballAcceleration, botColor, border,
+    // Campain
+    randomiseColors, smallBall, callback
     ) {
     
     // board
@@ -18,7 +21,12 @@ export function setup(
     let velocityY = 0;
 
     // ball
-    let ballSize = 20;
+    let ballSize;
+    if(!smallBall){
+        ballSize = 20;
+    } else {
+        ballSize = 3;
+    }
     let ballX;
     let ballY;
     let ballVelocityX = 4;
@@ -217,12 +225,13 @@ export function setup(
 
     function checkIfGameEnded() {
         if(playerScore == 3){
-            alert("You won with "+botDifficulty+ "bot! Congratulations!");
+            alert("You won with "+botDifficulty+ " bot! Congratulations!");
             clearInterval(updateInterval);
             board.style.display = "none";
             pvpMode.style.display = "block";
             campainMode.style.display = "block";
             pvcMode.style.display = "block";
+            callback("game-won");
         } else if (opponentScore == 3){
             alert("You lost with "+botDifficulty+" bot! Try again!");
             clearInterval(updateInterval);
@@ -230,6 +239,7 @@ export function setup(
             pvpMode.style.display = "block";
             campainMode.style.display = "block";
             pvcMode.style.display = "block";
+            callback("game-lost");
         }
     }
 

@@ -9,23 +9,23 @@ document.getElementById('pvp-button').addEventListener('click', () => {
 });
 
 document.getElementById('Easy').addEventListener('click', () => {
-    setup("Easy", 3, 0.2, "lightgreen", false, false);
+    setup("Easy", 3, 0.2, "lightgreen", false, false, false, handleGameOutcome);
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    setup("Medium", 5.5, 0.28, "orange", false, false);
+    setup("Medium", 5.5, 0.28, "orange", false, false, false, handleGameOutcome);
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false);
+    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false, false, handleGameOutcome);
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false);
+    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false, false, handleGameOutcome);
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    setup("Impossible", 18, 0.6, "black", true, false);
+    setup("Impossible", 18, 0.6, "black", true, false, false, handleGameOutcome);
 });
 
 // Click button change color effect
@@ -121,7 +121,7 @@ levelOne.addEventListener("click", e => {
 
 levelTwo.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 2";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelDescr.innerHTML = "In this level ball will be extremly small!<br> You better watch out, because it will be real struggle to keep track of it!.";
     levelHardnes.value = "Medium";
     levelHardnes.style.backgroundColor = "orange";
     selectedLevel = 2;
@@ -191,12 +191,63 @@ levels.forEach((level) => {
 closeLevelSpec.addEventListener("click", e => {
     levelSpec.style.display = "none";
 });
-
+ 
 function startCampainLevel(level) {
     levelSpec.style.display = "none";
     campainMenu.style.display = "none";
     if(level == 1){
-        setup("Level one", 3, 0.2, "lightgreen", false, true)
-        levelOne.style.background = "linear-gradient(135deg, #44ff00, #074001)";
+        setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome)
+    } else if( level == 2) {
+        setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome);
+    } else if( level == 3) {
+        setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome);
+    }
+}
+let levelOneComplete = false;
+let levelTwoComplete = false;
+let levelThreeComplete = false;
+let levelFourComplete = false;
+let levelFiveComplete = false;
+let levelSixComplete = false;
+let levelSevenComplete = false;
+let levelEightComplete = false;
+
+function handleGameOutcome(outcome) {
+    if (outcome === "game-won") {
+        if(selectedLevel == 1){
+            levelOne.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelOneComplete = true;
+        }
+        if(selectedLevel == 2){
+            levelTwo.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelTwoComplete = true;
+        }
+        if(selectedLevel == 3){
+            levelThree.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelThreeComplete = true;
+        }
+        if(selectedLevel == 4){
+            levelFour.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelFourComplete = true;
+        }
+        if(selectedLevel == 5){
+            levelFive.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelFiveComplete = true;
+        }
+        if(selectedLevel == 6){
+            levelSix.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelSixComplete = true;
+        }
+        if(selectedLevel == 7){
+            levelSeven.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelSevenComplete = true;
+        }
+        if(selectedLevel == 8){
+            levelEight.style.background = "linear-gradient(135deg, #26ff00, #0b3f02)";
+            levelEightComplete = true;
+        }
+        console.log("Game won!");
+    } else if (outcome === "game-lost") {
+        console.log("Game lost!");
     }
 }
