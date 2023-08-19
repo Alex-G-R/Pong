@@ -38,6 +38,7 @@ export function pvp() {
     const pvpButton = document.getElementById("pvp-button");
     const pvpMode = document.getElementById("mode-pvp");
     const pvcMode = document.getElementById("mode-pvc");
+    const sandMode = document.getElementById("mode-sandbox");
     const campainMode = document.getElementById("mode-campain");
     const difficultyChoice = document.getElementById("choose-difficulty");
 
@@ -46,6 +47,7 @@ export function pvp() {
 
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
+    sandMode.style.display = "none";
     campainMode.style.display = "none";
     difficultyChoice.style.display = "none";
     board = document.getElementById('board');
@@ -210,12 +212,14 @@ export function pvp() {
             campainMode.style.display = "block";
             pvpMode.style.display = "block";
             pvcMode.style.display = "block";
+            sandMode.style.display = "block";
         } else if (opponentScore == 3){  
             alert("Player two won!")
             clearInterval(updateInterval);
             board.style.display = "none";
             campainMode.style.display = "block";
             pvpMode.style.display = "block";
+            sandMode.style.display = "block";
             pvcMode.style.display = "block";
         }
     }

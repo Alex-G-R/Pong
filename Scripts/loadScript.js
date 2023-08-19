@@ -44,6 +44,7 @@ modeButtons.forEach((button) =>{
 const pvpMode = document.getElementById("mode-pvp");
 const pvcMode = document.getElementById("mode-pvc");
 const campainMode = document.getElementById("mode-campain");
+const sandMode = document.getElementById("mode-sandbox");
 const campainMenu = document.getElementById("campain-menu");
 const difficultyChoice = document.getElementById("choose-difficulty");
 
@@ -56,6 +57,7 @@ const campBack = document.getElementById("back-button-campain");
 
 pvcButton.addEventListener("click", e => {
     pvpMode.style.display = "none";
+    sandMode.style.display = "none";
     pvcMode.style.display = "none";
     campainMode.style.display = "none";
     difficultyChoice.style.display = "block";
@@ -63,6 +65,7 @@ pvcButton.addEventListener("click", e => {
 });
 
 campainButton.addEventListener("click", e => {
+    sandMode.style.display = "none";
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
     campainMode.style.display = "none";
@@ -76,6 +79,7 @@ pvcBack.addEventListener("click", e =>{
     pvpMode.style.display = "block";
     pvcMode.style.display = "block";
     campainMode.style.display = "block";
+    sandMode.style.display = "block";
     difficultyChoice.style.display = "none";
     pvcBack.style.display = "none";
     campainMenu.style.display = "none";
@@ -85,6 +89,7 @@ campBack.addEventListener("click", e =>{
     pvpMode.style.display = "block";
     pvcMode.style.display = "block";
     campainMode.style.display = "block";
+    sandMode.style.display = "block";
     difficultyChoice.style.display = "none";
     pvcBack.style.display = "none";
     campainMenu.style.display = "none";
