@@ -1,8 +1,7 @@
 export function custom(
-    // Basic PVC
     botDifficulty, botSpeed, ballAcceleration, botColor, playerColor,
-    // Campain
-    randomiseColors, ballSizeInput, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
+    randomiseColors, ballSizeInput, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight, ballColor
+
     ) {
     
     // board
@@ -46,10 +45,12 @@ export function custom(
     const sandboxMode = document.getElementById("mode-sandbox");
     const sandboxPanel = document.getElementById("sandbox-panel");
     const difficultyChoice = document.getElementById("choose-difficulty");
+    const sandBack = document.getElementById("back-button-sand");
 
 
     opponentSpeed = botSpeed; // Set speed of the opponent
 
+    sandBack.style.display = "none";
     sandboxPanel.style.display = "none";
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
@@ -159,7 +160,7 @@ export function custom(
 
         // draw the ball
         if(!randomiseColors){
-            context.fillStyle = 'blue';
+            context.fillStyle = ballColor;
         } else {
             context.fillStyle = randomColor();
         }

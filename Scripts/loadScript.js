@@ -185,27 +185,30 @@ const mlg = document.getElementById("mlg-toggle");
 const mirror = document.getElementById("mirror-toggle");
 
 const botColorInput = document.getElementById("bot-color-input");
-
 const playerColorInput = document.getElementById("player-color-input");
+const ballColorInput = document.getElementById("ball-color-input");
 
 //strat custom game
 
 const startCustomGameButton = document.getElementById("start-custom-button");
 
 startCustomGameButton.addEventListener("click", () => {
-    custom("Custom",
-        parseInt(botSpeedSlider.value),
-        parseInt(ballSlider.value)/1000,
-        botColorInput.value ,
-        playerColorInput.value,
-        mlg.checked,
-        parseInt(ballSizeSlider.value),
-        handleGameOutcome,
-        mirror.checked,
-        true,
-        parseInt(pWidthSlider.value),
-        parseInt(pHeightSlider.value))
+    custom("Custom", // Bot name
+        parseInt(botSpeedSlider.value), // botSpeed
+        parseInt(ballSlider.value)/1000, // BallAcceleration on bounce
+        botColorInput.value , // color of the bot paddle
+        playerColorInput.value, // color of the player paddle
+        mlg.checked, // toggle MLG mode (flashy)
+        parseInt(ballSizeSlider.value), // Ball size
+        handleGameOutcome, 
+        mirror.checked, // mirror mode, reversed controls
+        true, // Unlocks changing width and height of player paddle
+        parseInt(pWidthSlider.value), // player paddle width
+        parseInt(pHeightSlider.value)), // player paddle height
+        ballColorInput.value // color of the ball
 });
+
+
 
 // levels 
 

@@ -223,9 +223,17 @@ img{
     transform: translateX(-50%); /* Adjust to center the element properly */
     margin-top: 230px;
 } #ball-color{
-    left: 50%; /* Horizontally center the element */
+    left: 56%; /* Horizontally center the element */
     transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 150px;
+    margin-top: 330px;
+} #text-color {
+    left: 56%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 210px;
+} #board-color {
+    left: 56%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 270px;
 }
 
 .option-header{
