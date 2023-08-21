@@ -154,6 +154,119 @@ img{
     top: 35%;
 }
 
+#sandbox-menu{
+    display: none;
+}
+
+#sandbox-panel{
+    position: absolute;
+    height: 600px;
+    width: 1000px;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 75px;
+    background: linear-gradient(135deg, #ff00e1, #00f7ef);
+    border-radius: 10%;
+    border: white 5px solid;
+} #sandbox-panel-header {
+    color: white;
+    font-size: 3em;
+    margin-top: 10px;
+} .option{
+    position: inherit;
+} 
+#starting-ball-speed{
+    border: white 3px solid;
+    border-radius: 15%;
+    padding: 10px;
+    top: 0%;
+    left: 15%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 40px;
+}#bot-color{
+    top: 23%;
+    left: 15%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 40px;
+}#player-color{
+    top: 33%;
+    left: 15%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 40px;
+} #player-paddle-size{
+    left: 15%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 250px;
+} #player-paddle-size h2{
+    color: white;
+    font-size: 1em;
+    margin-top: 20px;
+} #mlg-mode{
+    left: 33%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 20px;
+} #mirror-mode{
+    left: 33%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 120px;
+}#ball-size{
+    border: white 3px solid;
+    border-radius: 15%;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 20px;
+} #oponent-speed{
+    padding: 5px;
+    border: white 3px solid;
+    border-radius: 15%;
+    left: 36%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 230px;
+} #ball-color{
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 150px;
+}
+
+.option-header{
+    color: white;
+    font-size: 1.4em;
+}
+.option-slider{
+    height: 50px;
+    width: 150px;
+}
+.slider-value{
+    font-size: 1.3em;
+    color: white;
+    font-weight: 900;
+}
+
+#mlg-toggle, #mirror-toggle{
+    height: 40px;
+    width: 40px;
+    margin-top: 20px;
+}
+
+#bots{
+    margin-top: 20px;
+}
+
+#start-custom-game{
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust to center the element properly */
+    margin-top: 400px;
+}
+
+#start-custom-button{
+    border-radius: 15%;
+    height: 100px;
+    width: 250px;
+    color: white;
+    font-size: 4em;
+    background-color: lightgreen;
+}
+
 #close{
     height: 80px;
     width: 80px;

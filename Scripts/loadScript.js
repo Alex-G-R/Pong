@@ -1,6 +1,7 @@
 
 import { pvp } from "./pvp.js";
 import { setup } from "./setup.js"
+import { custom } from "./custom.js"
 
 
 // Button click event handlers
@@ -48,6 +49,7 @@ const pvcMode = document.getElementById("mode-pvc");
 const campainMode = document.getElementById("mode-campain");
 const sandMode = document.getElementById("mode-sandbox");
 const sandMenu = document.getElementById("sandbox-menu");
+const sandPanel = document.getElementById("sandbox-panel");
 const campainMenu = document.getElementById("campain-menu");
 const difficultyChoice = document.getElementById("choose-difficulty");
 
@@ -106,6 +108,7 @@ sandMode.addEventListener("click", e => {
     campainMode.style.display = "none";
     difficultyChoice.style.display = "none";
     sandBack.style.display = "block";
+    sandPanel.style.display = "block";
 
     sandMenu.style.display = "block";
 });
@@ -119,6 +122,90 @@ sandBack.addEventListener("click", e =>{
     sandBack.style.display = "none";
     sandMenu.style.display = "none";
 })
+
+//sandbox
+
+const ballSlider = document.getElementById("ball-speed-slider");
+const ballSpeedValue = document.getElementById("ball-speed-value");
+
+// Initialize the ball speed value display
+ballSpeedValue.textContent = ballSlider.value;
+
+// Add an event listener to update the display when the slider value changes
+ballSlider.addEventListener("input", e => {
+    ballSpeedValue.textContent = parseInt(ballSlider.value)/1000;
+});
+
+
+
+const pWidthSlider = document.getElementById("player-width-slider");
+const pHeightSlider = document.getElementById("player-height-slider");
+
+const pWidthValue = document.getElementById("player-paddle-width");
+const pHeightValue = document.getElementById("player-paddle-height");
+
+pWidthValue.textContent = pWidthSlider.value;
+pHeightValue.textContent = pHeightSlider.value;
+
+pWidthSlider.addEventListener("input", e => {
+    pWidthValue.textContent = pWidthSlider.value;
+});
+pHeightSlider.addEventListener("input", e => {
+    pHeightValue.textContent = pHeightSlider.value;
+});
+
+
+
+const ballSizeSlider = document.getElementById("ball-size-slider");
+const ballSizeValue = document.getElementById("ball-size-value");
+
+// Initialize the ball speed value display
+ballSizeValue.textContent = ballSizeSlider.value;
+
+// Add an event listener to update the display when the slider value changes
+ballSizeSlider.addEventListener("input", e => {
+    ballSizeValue.textContent = ballSizeSlider.value;
+});
+
+
+
+
+const botSpeedSlider = document.getElementById("bot-speed-slider");
+const botSpeedValue = document.getElementById("bot-speed-value");
+
+// Initialize the ball speed value display
+botSpeedValue.textContent = botSpeedSlider.value;
+
+// Add an event listener to update the display when the slider value changes
+botSpeedSlider.addEventListener("input", e => {
+    botSpeedValue.textContent = botSpeedSlider.value;
+});
+
+const mlg = document.getElementById("mlg-toggle");
+const mirror = document.getElementById("mirror-toggle");
+
+const botColorInput = document.getElementById("bot-color-input");
+
+const playerColorInput = document.getElementById("player-color-input");
+
+//strat custom game
+
+const startCustomGameButton = document.getElementById("start-custom-button");
+
+startCustomGameButton.addEventListener("click", () => {
+    custom("Custom",
+        parseInt(botSpeedSlider.value),
+        parseInt(ballSlider.value)/1000,
+        botColorInput.value ,
+        playerColorInput.value,
+        mlg.checked,
+        parseInt(ballSizeSlider.value),
+        handleGameOutcome,
+        mirror.checked,
+        true,
+        parseInt(pWidthSlider.value),
+        parseInt(pHeightSlider.value))
+});
 
 // levels 
 

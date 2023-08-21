@@ -38,6 +38,67 @@
 
         <div id="sandbox-menu">
             <input class="back-button" id="back-button-sand" type="button" value="Back">
+
+            <div id="sandbox-panel">
+                <h1 id="sandbox-panel-header">Create level</h1>
+
+                <div id="starting-ball-speed" class="option">
+                    <h1 class="option-header">Ball acceleration</h1>
+                    <input type="range" min="1" max="1000" value="300" id="ball-speed-slider" class="option-slider"/>
+                    <div id="ball-speed-value" class="slider-value">0</div>
+                </div>
+
+                <div id="bot-color" class="option">
+                    <h1 class="option-header">Bot color</h1>
+                    <input type="text" placeholder="Enter bot color:" id="bot-color-input" value="red">
+                </div>
+
+                <div id="player-color" class="option">
+                    <h1 class="option-header">Player color</h1>
+                    <input type="text" placeholder="Enter player color:" id="player-color-input" value="white">
+                </div>
+
+                <div id="ball-color" class="option">
+                    <h1 class="option-header">Ball color</h1>
+                    <input type="text" placeholder="Enter ball color:" id="ball-color-input" value="blue">
+                </div>
+
+                <div id="player-paddle-size" class="option">
+                    <h1 class="option-header">Player paddle size</h1>
+                    <h2>Width</h2>
+                    <input type="range" min="1" max="100" value="20" id="player-width-slider" class="option-slider"/>
+                    <div id="player-paddle-width" class="slider-value">20</div>
+                    <h2>Height</h2>
+                    <input type="range" min="1" max="500" value="150" id="player-height-slider" class="option-slider"/>
+                    <div id="player-paddle-height" class="slider-value">150</div>
+                </div>
+
+                <div id="mlg-mode" class="option">
+                    <h1 class="option-header">Toggle MLG</h1>
+                    <input type="checkbox" id="mlg-toggle"/>
+                </div>
+
+                <div id="mirror-mode" class="option">
+                    <h1 class="option-header">Toggle mirror</h1>
+                    <input type="checkbox" id="mirror-toggle"/>
+                </div>
+                
+                <div id="ball-size" class="option">
+                    <h1 class="option-header">Ball size</h1>
+                    <input type="range" min="1" max="100" value="20" id="ball-size-slider" class="option-slider"/>
+                    <div id="ball-size-value" class="slider-value">20</div>
+                </div>
+
+                <div id="oponent-speed" class="option">
+                    <h1 class="option-header">Oponent Speed</h1>
+                    <input type="range" min="1" max="25" value="7" id="bot-speed-slider" class="option-slider"/>
+                    <div id="bot-speed-value" class="slider-value">7</div>
+                </div>
+
+                <div id="start-custom-game" class="option">
+                    <input type="button" id="start-custom-button" value="START!">
+                </div>
+            </div>
         </div>
 
         <div id="campain-menu">

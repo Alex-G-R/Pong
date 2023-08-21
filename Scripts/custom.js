@@ -1,8 +1,8 @@
-export function setup(
+export function custom(
     // Basic PVC
-    botDifficulty, botSpeed, ballAcceleration, botColor, border,
+    botDifficulty, botSpeed, ballAcceleration, botColor, playerColor,
     // Campain
-    randomiseColors, smallBall, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
+    randomiseColors, ballSizeInput, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
     ) {
     
     // board
@@ -23,11 +23,7 @@ export function setup(
     
     // ball
     let ballSize;
-    if(!smallBall){
-        ballSize = 20;
-    } else {
-        ballSize = 3;
-    }
+    ballSize = ballSizeInput;
     let ballX;
     let ballY;
     let ballVelocityX = 4;
@@ -97,30 +93,20 @@ export function setup(
         context.fillRect(0, 0, board.width, board.height);
 
         if(!randomiseColors){
-            context.fillStyle = 'white';
+            context.fillStyle = playerColor;
         } else {
             context.fillStyle = randomColor();
         }
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
 
-        if(!border){
-            if(!randomiseColors){
-                context.fillStyle = botColor;
-            } else {
-                context.fillStyle = randomColor();
-            }
-            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+
+        if(!randomiseColors){
+            context.fillStyle = botColor;
         } else {
-            context.fillStyle = 'white';
-            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
-
-
-            context.fillStyle = 'white';
-            context.fillRect(opponentX - 2, opponentY - 2, opponentWidth + 4, opponentHeight + 4);
-
-            context.fillStyle = 'black';
-            context.fillRect(opponentX + 1, opponentY + 1, opponentWidth - 2, opponentHeight - 2);
+            context.fillStyle = randomColor();
         }
+        context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+
 
         // buffer zone
         const bufferZone = opponentHeight / 4; 
