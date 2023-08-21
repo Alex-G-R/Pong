@@ -2,7 +2,7 @@ export function setup(
     // Basic PVC
     botDifficulty, botSpeed, ballAcceleration, botColor, border,
     // Campain
-    randomiseColors, smallBall, callback, mirrorMode, middleWall, wallWidth, wallHeight
+    randomiseColors, smallBall, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
     ) {
     
     // board
@@ -15,14 +15,11 @@ export function setup(
     // player pad
     let playerWidth = 20;
     let playerHeight = 150;
+
     let playerX = 60;
     let playerY = ((rows * blockSize) / 2) - (playerHeight / 2);
 
     let velocityY = 0;
-
-    // middleWall 
-    let wallX;
-    let wallY;
 
     // ball
     let ballSize;
@@ -50,6 +47,7 @@ export function setup(
     const pvpMode = document.getElementById("mode-pvp");
     const pvcMode = document.getElementById("mode-pvc");
     const campainMode = document.getElementById("mode-campain");
+    const sandboxMode = document.getElementById("mode-sandbox");
     const difficultyChoice = document.getElementById("choose-difficulty");
 
 
@@ -58,6 +56,7 @@ export function setup(
     pvpMode.style.display = "none";
     pvcMode.style.display = "none";
     campainMode.style.display = "none";
+    sandboxMode.style.display = "none";
     difficultyChoice.style.display = "none";
     board = document.getElementById('board');
     board.height = rows * blockSize;
@@ -83,6 +82,11 @@ export function setup(
     window.addEventListener('keyup', stopMovment);
 
     function update() {
+        if(smallPaddle == true){
+            playerWidth = paddleWidth;
+            playerHeight = paddleHeight;
+        }
+
         if(!randomiseColors){
             context.fillStyle = 'black';
         } else {
@@ -96,13 +100,6 @@ export function setup(
             context.fillStyle = randomColor();
         }
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
-
-        if(middleWall == true){
-            wallX = (board.width * 0.5) - wallWidth * 0.5;
-            wallY = (board.height * 0.5) - wallHeight  * 0.5;
-            context.fillStyle = 'white';
-            context.fillRect(wallX, wallY, wallWidth, wallHeight);
-        }
 
         if(!border){
             if(!randomiseColors){
@@ -142,33 +139,6 @@ export function setup(
             ballVelocityY *= -1;
             increaseBallSpeed();
         }
-
-        // bounce off middleWall lvl4
-        if (middleWall) {
-            if (
-                ballX + ballSize > wallX &&
-                ballX < wallX + wallWidth &&
-                ballY + ballSize > wallY &&
-                ballY < wallY + wallHeight
-            ) {
-                const wallCenterX = wallX + wallWidth / 2;
-                const wallCenterY = wallY + wallHeight / 2;
-
-                // Calculate the angle between the ball center and the wall center
-                const angle = Math.atan2(ballY + ballSize / 2 - wallCenterY, ballX + ballSize / 2 - wallCenterX);
-
-                // Calculate the new angle after bouncing off the wall
-                const newAngle = Math.PI / 4 - angle;
-
-                // Calculate the new velocity components
-                const speed = Math.sqrt(ballVelocityX * ballVelocityX + ballVelocityY * ballVelocityY);
-                ballVelocityX = speed * Math.cos(newAngle) * Math.sign(ballVelocityX);
-                ballVelocityY = speed * Math.sin(newAngle) * -Math.sign(ballVelocityY);
-
-                increaseBallSpeed();
-            }
-        }
-
 
 
         // check if ball goes past the opponent
@@ -264,13 +234,8 @@ export function setup(
     }
 
     function resetBall() {
-        if(!middleWall){
-            ballX = board.width / 2;
-            ballY = board.height / 2;
-        } else {
-            ballX = board.width / 2.2;
-            ballY = board.height / 2.2;
-        }
+        ballX = board.width / 2;
+        ballY = board.height / 2;
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }
@@ -283,6 +248,7 @@ export function setup(
             pvpMode.style.display = "block";
             campainMode.style.display = "block";
             pvcMode.style.display = "block";
+            sandboxMode.style.display = "block";
             callback("game-won");
         } else if (opponentScore == 3){
             alert("You lost with "+botDifficulty+" bot! Try again!");
@@ -290,6 +256,7 @@ export function setup(
             board.style.display = "none";
             pvpMode.style.display = "block";
             campainMode.style.display = "block";
+            sandboxMode.style.display = "block";
             pvcMode.style.display = "block";
             callback("game-lost");
         }

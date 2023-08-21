@@ -8,26 +8,26 @@ document.getElementById('pvp-button').addEventListener('click', () => {
     pvp();
 });
 
-// setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode, middleWall, wallWidth, wallHeight)
+// setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode, smallPaddle, paddleWidth, paddleHeight)
 
 document.getElementById('Easy').addEventListener('click', () => {
-    setup("Easy", 3, 0.2, "lightgreen", false, false, false, handleGameOutcome, false, false, false, false);
+    setup("Easy", 3, 0.2, "lightgreen", false, false, false, handleGameOutcome, false, false, 0, 0);
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    setup("Medium", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, false, false, false, false);
+    setup("Medium", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, false, false, 0, 0);
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
+    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, false, 0, 0);
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
+    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, 0, 0);
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    setup("Impossible", 18, 0.6, "black", true, false, false, handleGameOutcome, false, false, false, false);
+    setup("Impossible", 18, 0.6, "black", true, false, false, handleGameOutcome, false, false, 0, 0);
 });
 
 // Click button change color effect
@@ -47,6 +47,7 @@ const pvpMode = document.getElementById("mode-pvp");
 const pvcMode = document.getElementById("mode-pvc");
 const campainMode = document.getElementById("mode-campain");
 const sandMode = document.getElementById("mode-sandbox");
+const sandMenu = document.getElementById("sandbox-menu");
 const campainMenu = document.getElementById("campain-menu");
 const difficultyChoice = document.getElementById("choose-difficulty");
 
@@ -54,7 +55,7 @@ const pvcButton = document.getElementById("pvc-button");
 const campainButton = document.getElementById("campain-button");
 
 const pvcBack = document.getElementById("back-button-pvc");
-
+const sandBack = document.getElementById("back-button-sand");
 const campBack = document.getElementById("back-button-campain");
 
 pvcButton.addEventListener("click", e => {
@@ -96,6 +97,27 @@ campBack.addEventListener("click", e =>{
     pvcBack.style.display = "none";
     campainMenu.style.display = "none";
     levelSpec.style.display = "none";
+})
+
+sandMode.addEventListener("click", e => {
+    sandMode.style.display = "none";
+    pvpMode.style.display = "none";
+    pvcMode.style.display = "none";
+    campainMode.style.display = "none";
+    difficultyChoice.style.display = "none";
+    sandBack.style.display = "block";
+
+    sandMenu.style.display = "block";
+});
+
+sandBack.addEventListener("click", e =>{
+    pvpMode.style.display = "block";
+    pvcMode.style.display = "block";
+    campainMode.style.display = "block";
+    sandMode.style.display = "block";
+    difficultyChoice.style.display = "none";
+    sandBack.style.display = "none";
+    sandMenu.style.display = "none";
 })
 
 // levels 
@@ -144,12 +166,13 @@ levelThree.addEventListener("click", e => {
 
 levelFour.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 4";
-    levelDescr.innerHTML = "In this level there is a wall in the middle of the board!<br> The ball will bounce of it just like a normal wall! You better watch out, because it will be easy to get punked! <br> <br> Watch out! BUGGY CODE";
+    levelDescr.innerHTML = "In this level your paddle is extra small<br>";
     levelHardnes.value = "Hard";
     levelHardnes.style.backgroundColor = "rgb(213, 0, 0)";
     selectedLevel = 4;
 });
 
+/*
 levelFive.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 5";
     levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
@@ -182,6 +205,7 @@ levelEight.addEventListener("click", e => {
     levelHardnes.style.backgroundColor = "black";
     selectedLevel = 8;
 });
+*/
 
 // Start campain levels
 const startLevel = document.getElementById("start-level");
@@ -204,22 +228,24 @@ function startCampainLevel(level) {
     campainMenu.style.display = "none";
     // setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode)
     if(level == 1){
-        setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome, false, false, false, false)
+        setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome, false, false, false, 0, 0)
     } else if( level == 2) {
-        setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome, false, false, false, false);
+        setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome, false, false, false, 0, 0);
     } else if( level == 3) {
-        setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, true, false, false, false);
+        setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, true, false, false, 0, 0);
     } else if( level == 4) {
-        setup("Level four", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, true, 30, 300);
-    } else if( level == 5) {
-        setup("Level five", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
-    } else if( level == 6) {
-        setup("Level six", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
-    } else if( level == 7) {
-        setup("Level seven", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
-    } else if( level == 8) {
-        setup("Level eight", 5.5, 0.28, "black", true, false, false, handleGameOutcome, false, false, false, false);
+        setup("Level four", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, true, 10, 50);
     }
+    // SOON
+    //} else if( level == 5) {
+    //    setup("Level five", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false);
+    //} else if( level == 6) {
+    //    setup("Level six", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false);
+    //} else if( level == 7) {
+    //    setup("Level seven", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false);
+    //} else if( level == 8) {
+    //    setup("Level eight", 5.5, 0.28, "black", true, false, false, handleGameOutcome, false);
+    //}
 }
 let levelOneComplete = false;
 let levelTwoComplete = false;
