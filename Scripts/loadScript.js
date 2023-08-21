@@ -8,24 +8,26 @@ document.getElementById('pvp-button').addEventListener('click', () => {
     pvp();
 });
 
+// setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode, middleWall, wallWidth, wallHeight)
+
 document.getElementById('Easy').addEventListener('click', () => {
-    setup("Easy", 3, 0.2, "lightgreen", false, false, false, handleGameOutcome);
+    setup("Easy", 3, 0.2, "lightgreen", false, false, false, handleGameOutcome, false, false, false, false);
 });
 
 document.getElementById('Medium').addEventListener('click', () => {
-    setup("Medium", 5.5, 0.28, "orange", false, false, false, handleGameOutcome);
+    setup("Medium", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, false, false, false, false);
 });
 
 document.getElementById('Hard').addEventListener('click', () => {
-    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false, false, handleGameOutcome);
+    setup("Hard", 8.5, 0.35, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
 });
 
 document.getElementById('Insane').addEventListener('click', () => {
-    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false, false, handleGameOutcome);
+    setup("Insane", 11, 0.45, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
 });
 
 document.getElementById('Impossible').addEventListener('click', () => {
-    setup("Impossible", 18, 0.6, "black", true, false, false, handleGameOutcome);
+    setup("Impossible", 18, 0.6, "black", true, false, false, handleGameOutcome, false, false, false, false);
 });
 
 // Click button change color effect
@@ -134,7 +136,7 @@ levelTwo.addEventListener("click", e => {
 
 levelThree.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 3";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelDescr.innerHTML = "In this level your controls are reversed! Up is down and down is up!<br> You better watch out, because it will be easy to lose track of your paddle.";
     levelHardnes.value = "Medium";
     levelHardnes.style.backgroundColor = "orange";
     selectedLevel = 3;
@@ -142,7 +144,7 @@ levelThree.addEventListener("click", e => {
 
 levelFour.addEventListener("click", e => {
     levelNumber.innerHTML = "Level 4";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelDescr.innerHTML = "In this level there is a wall in the middle of the board!<br> The ball will bounce of it just like a normal wall! You better watch out, because it will be easy to get punked! <br> <br> Watch out! BUGGY CODE";
     levelHardnes.value = "Hard";
     levelHardnes.style.backgroundColor = "rgb(213, 0, 0)";
     selectedLevel = 4;
@@ -200,12 +202,23 @@ closeLevelSpec.addEventListener("click", e => {
 function startCampainLevel(level) {
     levelSpec.style.display = "none";
     campainMenu.style.display = "none";
+    // setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode)
     if(level == 1){
-        setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome)
+        setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome, false, false, false, false)
     } else if( level == 2) {
-        setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome);
+        setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome, false, false, false, false);
     } else if( level == 3) {
-        setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome);
+        setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, true, false, false, false);
+    } else if( level == 4) {
+        setup("Level four", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, true, 30, 300);
+    } else if( level == 5) {
+        setup("Level five", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
+    } else if( level == 6) {
+        setup("Level six", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
+    } else if( level == 7) {
+        setup("Level seven", 5.5, 0.28, "rgb(88, 0, 0)", false, false, false, handleGameOutcome, false, false, false, false);
+    } else if( level == 8) {
+        setup("Level eight", 5.5, 0.28, "black", true, false, false, handleGameOutcome, false, false, false, false);
     }
 }
 let levelOneComplete = false;

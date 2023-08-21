@@ -2,7 +2,7 @@ export function setup(
     // Basic PVC
     botDifficulty, botSpeed, ballAcceleration, botColor, border,
     // Campain
-    randomiseColors, smallBall, callback
+    randomiseColors, smallBall, callback, mirrorMode, middleWall, wallWidth, wallHeight
     ) {
     
     // board
@@ -19,6 +19,10 @@ export function setup(
     let playerY = ((rows * blockSize) / 2) - (playerHeight / 2);
 
     let velocityY = 0;
+
+    // middleWall 
+    let wallX;
+    let wallY;
 
     // ball
     let ballSize;
@@ -64,8 +68,8 @@ export function setup(
     context = board.getContext('2d'); // used for drawing on the board
 
     // ball position and oponent
-    ballX = board.width / 2;
-    ballY = board.height / 2;
+    ballX = board.width / 2.2;
+    ballY = board.height / 2.2;
     opponentX = board.width - opponentWidth - 60; // Adjust the value as needed
     opponentY = ((rows * blockSize) / 2) - (opponentHeight / 2);
 
@@ -92,6 +96,13 @@ export function setup(
             context.fillStyle = randomColor();
         }
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
+
+        if(middleWall == true){
+            wallX = (board.width * 0.5) - wallWidth * 0.5;
+            wallY = (board.height * 0.5) - wallHeight  * 0.5;
+            context.fillStyle = 'white';
+            context.fillRect(wallX, wallY, wallWidth, wallHeight);
+        }
 
         if(!border){
             if(!randomiseColors){
@@ -131,6 +142,34 @@ export function setup(
             ballVelocityY *= -1;
             increaseBallSpeed();
         }
+
+        // bounce off middleWall lvl4
+        if (middleWall) {
+            if (
+                ballX + ballSize > wallX &&
+                ballX < wallX + wallWidth &&
+                ballY + ballSize > wallY &&
+                ballY < wallY + wallHeight
+            ) {
+                const wallCenterX = wallX + wallWidth / 2;
+                const wallCenterY = wallY + wallHeight / 2;
+
+                // Calculate the angle between the ball center and the wall center
+                const angle = Math.atan2(ballY + ballSize / 2 - wallCenterY, ballX + ballSize / 2 - wallCenterX);
+
+                // Calculate the new angle after bouncing off the wall
+                const newAngle = Math.PI / 4 - angle;
+
+                // Calculate the new velocity components
+                const speed = Math.sqrt(ballVelocityX * ballVelocityX + ballVelocityY * ballVelocityY);
+                ballVelocityX = speed * Math.cos(newAngle) * Math.sign(ballVelocityX);
+                ballVelocityY = speed * Math.sin(newAngle) * -Math.sign(ballVelocityY);
+
+                increaseBallSpeed();
+            }
+        }
+
+
 
         // check if ball goes past the opponent
         if (ballX > opponentX) {
@@ -187,10 +226,18 @@ export function setup(
     }
 
     function changeDirection(event) {
-        if (event.code == "ArrowUp" && playerY > 0) {
-            velocityY = -5;
-        } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
-            velocityY = 5;
+        if(!mirrorMode){
+            if (event.code == "ArrowUp" && playerY > 0) {
+                velocityY = -5;
+            } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+                velocityY = 5;
+            }
+        } else {
+            if (event.code == "ArrowDown" && playerY > 0) {
+                velocityY = -5;
+            } else if (event.code == "ArrowUp" && playerY + playerHeight < board.height) {
+                velocityY = 5;
+            }
         }
     }
 
@@ -217,8 +264,13 @@ export function setup(
     }
 
     function resetBall() {
-        ballX = board.width / 2;
-        ballY = board.height / 2;
+        if(!middleWall){
+            ballX = board.width / 2;
+            ballY = board.height / 2;
+        } else {
+            ballX = board.width / 2.2;
+            ballY = board.height / 2.2;
+        }
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }
