@@ -357,6 +357,22 @@ img{
     cursor: pointer;
 }
 
+#close-game-button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 80px;
+    width: 120px;
+    border: 3px black solid;
+    background-color: rgba(113, 105, 230, 0.577);
+    color: white;
+    font-size: 1.5em;
+    display: none;
+    cursor: pointer;
+}   
+
 #board{
     display: none;
     position: absolute;

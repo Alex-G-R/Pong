@@ -58,6 +58,19 @@ export function pvp() {
 
     context = board.getContext('2d'); // used for drawing on the board
 
+    // close game btn
+    const closeGame = document.getElementById("close-game-button");
+    closeGame.style.display = "block";
+    closeGame.addEventListener("click", e => {
+        clearInterval(updateInterval);
+        board.style.display = "none";
+        campainMode.style.display = "block";
+        pvpMode.style.display = "block";
+        pvcMode.style.display = "block";
+        sandMode.style.display = "block";
+        closeGame.style.display = "none";
+    });
+
     // ball position
     ballX = board.width / 2;
     ballY = board.height / 2;

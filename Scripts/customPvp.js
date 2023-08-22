@@ -61,6 +61,20 @@ export function customPvp(
     board.height = rows * blockSize;
     board.width = cols * blockSize;
 
+    // close game btn
+    const closeGame = document.getElementById("close-game-button");
+    closeGame.style.display = "block";
+    closeGame.addEventListener("click", e => {
+        clearInterval(updateInterval);
+        board.style.display = "none";
+        pvpMode.style.display = "block";
+        campainMode.style.display = "block";
+        sandboxMode.style.display = "block";
+        pvcMode.style.display = "block";
+        closeGame.style.display = "none";
+        callback("game-closed");
+    });
+
     // Display board on the screen
     board.style.display = "block";
 
