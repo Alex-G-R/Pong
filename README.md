@@ -1,10 +1,15 @@
 # Pong
 Pong game with game modes like PVP, Bots with 5 levels of difficultis and even campain!
 
-PVP Mode - Works just like you would imagine, player one move by arrows player two move by W and S
+PVP Mode - Works just like you would imagine, player one moves by W and S player two moves by arrows
 
 Player vs Computer - I implemented 5 levels of difficulty, easy, medium, hard, insane and impossible good luck!
 
-Campain - You git 8 levels in campain with diffrent modificators, by winning the game you are unlocking these modificators to applay to you custom game! Witch can be PVP or PVC on any level, and any modificators
+Campain - You have 4 levels in campain with diffrent modificators.
+
+Sandbox/level creation - You have multiple modificators to change apperance, logic, and diffrent values like opponent speed, bacground color, ball size, player paddle size by witch you can create perfect or just fun game for yourself. You can also play with friend! Just pick PVP option and start the game. Player moves by W and S, Opponent(Player two) moves By ArrowUp and Arrow Down!
+
+In levels or custom games where you play againts bots your controls are Arrows (Up & Down)
+However in PVP games your controls (Player one) are W and S. 
 
 Good luck and have fun!
