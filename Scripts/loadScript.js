@@ -238,6 +238,46 @@ customPVP.addEventListener("click", () => {
     pvc = false;
 })
 
+
+// back to default
+const defaultBtn = document.getElementById("default-button");
+defaultBtn.addEventListener("click", () => {
+    botSpeedSlider.value = 5;
+    botSpeedValue.textContent = 5;
+
+    playerSpeedSlider.value = 5;
+    playerSpeedValue.textContent = 5;
+
+    customPVP.style.backgroundColor = "red";
+    customPVC.style.backgroundColor = "lightgreen";
+    pvc = true;
+
+    botColorInput.value = "red";
+    playerColorInput.value = "white";
+    ballColorInput.value = "blue";
+    textColorInput.value = "white";
+    bgColorInput.value = "black";
+
+    ballSizeSlider.value = 20;
+    ballSizeValue.textContent = 20;
+
+    mlg.checked = false;
+    mirror.checked = false;
+
+    oWidthSlider.value = 20;
+    oWidthValue.textContent = 20;
+    oHeightSlider.value = 150;
+    oHeightValue.textContent = 150;
+
+    pWidthSlider.value = 20;
+    pWidthValue.textContent = 20;
+    pHeightSlider.value = 150;
+    pHeightValue.textContent = 150;
+
+    ballSlider.value = 300;
+    ballSpeedValue.textContent = 0.3;
+})
+
 //strat custom game
 
 const startCustomGameButton = document.getElementById("start-custom-button");

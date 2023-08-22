@@ -310,6 +310,22 @@ img{
     margin-top: 20px;
 }
 
+#set-to-default{
+    left: 68%; 
+    transform: translateX(-50%); 
+    margin-top: 403px;
+}
+#default-button{
+    border-radius: 25%;
+    height: 95px;
+    width: 100px;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: gray;
+    cursor: pointer;
+}
+
 #start-custom-game{
     left: 50%; 
     transform: translateX(-50%); 
