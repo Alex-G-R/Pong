@@ -95,7 +95,7 @@ export function setup(
             context.fillStyle = randomColor();
         }
         context.fillRect(0, 0, board.width, board.height);
-
+        
         if(!randomiseColors){
             context.fillStyle = 'white';
         } else {

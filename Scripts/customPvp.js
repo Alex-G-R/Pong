@@ -1,5 +1,5 @@
-export function custom(
-    botDifficulty, botSpeed, ballAcceleration, botColor, playerColor,
+export function customPvp(
+    opponentSpeed, ballAcceleration, botColor, playerColor,
     randomiseColors, ballSizeInput, callback, mirrorMode, changePaddleSize,
     paddleWidth, paddleHeight, ballColor, textColor, boardColor, playerSpeed,
     opponentH, opponentW
@@ -16,8 +16,15 @@ export function custom(
     let playerWidth = 20;
     let playerHeight = 150;
     let playerX = 60;
-    let playerY = ((rows * blockSize) / 2) - (playerHeight / 2); // Place the player paddle on the vertical middle
+    let playerY = ((rows * blockSize) / 2) - (playerHeight / 2);
     let velocityY = 0;
+
+    // playerTwo
+    let opponentWidth = 20;
+    let opponentHeight = 150;
+    let opponentX = (cols * blockSize) - 60;
+    let opponentY = ((rows * blockSize) / 2) - (playerHeight / 2);;
+    let opponentVelocity = 0; // Speed of the opponent
     
     // ball
     let ballSize;
@@ -27,13 +34,6 @@ export function custom(
     let ballVelocityX = 4;
     let ballVelocityY = 2;
 
-    // opponent
-    let opponentWidth = 20;
-    let opponentHeight = 150;
-    let opponentX;
-    let opponentY;
-    let opponentSpeed; // declar speed of the opponent
-    opponentSpeed = botSpeed; // Set speed of the opponent
 
     // game variables
     let playerScore = 0;
@@ -67,11 +67,9 @@ export function custom(
     // Get context
     context = board.getContext('2d'); // used for drawing on the board
 
-    // ball position and opponent
+    // ball position and 
     ballX = board.width / 2;
     ballY = board.height / 2;
-    opponentX = board.width - opponentWidth - 60; // Adjust the value as needed
-    opponentY = ((rows * blockSize) / 2) - (opponentHeight / 2);
 
     // Start the game loop
     let updateInterval;
@@ -116,16 +114,6 @@ export function custom(
         }
         context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
 
-
-        // buffer zone
-        const bufferZone = opponentHeight / 4; 
-
-        // move the opponent towards the ball Y position
-        if (opponentY + opponentHeight / 2 < ballY + ballSize / 2 - bufferZone) {
-            opponentY += Math.min(opponentSpeed, board.height - (opponentY + opponentHeight));
-        } else if (opponentY + opponentHeight / 2 > ballY + ballSize / 2 + bufferZone) {
-            opponentY -= Math.min(opponentSpeed, opponentY);
-        }
 
         // move the ball
         ballX += ballVelocityX;
@@ -174,13 +162,20 @@ export function custom(
         }
         context.fillRect(ballX, ballY, ballSize, ballSize);
 
-        // Move the player
+        // Move the players
         playerY += velocityY;
-        // check if the player is within the board
+        opponentY += opponentVelocity;
+        // check if the players are within the board
         if (playerY < 0) {
             playerY = 0;
         } else if (playerY + playerHeight > board.height) {
             playerY = board.height - playerHeight;
+        }
+        // opponent
+        if (opponentY < 0) {
+            opponentY = 0;
+        } else if (opponentY + opponentHeight > board.height) {
+            opponentY = board.height - opponentHeight;
         }
 
        printScore();
@@ -189,28 +184,46 @@ export function custom(
     function printScore() {
         context.fillStyle = textColor;
         context.font = '24px Arial';
-        context.fillText(`Player: ${playerScore}`, 20, 30);
-        context.fillText(botDifficulty+` bot: ${opponentScore}`, board.width - 200, 30);
+        context.fillText(`Player one: ${playerScore}`, 20, 30);
+        context.fillText(`Player two: ${opponentScore}`, board.width - 200, 30);
     }
 
     function changeDirection(event) {
-        if(!mirrorMode){
-            if (event.code == "ArrowUp" && playerY > 0) {
-                velocityY = -playerSpeed;
-            } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
-                velocityY = playerSpeed;
-            }
-        } else {
-            if (event.code == "ArrowDown" && playerY > 0) {
-                velocityY = -playerSpeed;
-            } else if (event.code == "ArrowUp" && playerY + playerHeight < board.height) {
-                velocityY = playerSpeed;
-            }
+        //if(!mirrorMode){
+        if (event.code == "ArrowUp" && opponentY > 0) {
+            opponentVelocity = -opponentSpeed;
+        } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
+            opponentVelocity = opponentSpeed;
         }
+        else if (event.code == "KeyW" && playerY > 0) {
+            velocityY = -playerSpeed;
+        } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
+            velocityY = playerSpeed;
+        }
+        //} else {
+        //    if (event.code == "ArrowUp" && playerY > 0) {
+        //        opponentSpeed = opponentSpeed;
+        //    } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+        //        opponentSpeed = -opponentSpeed;
+        //    } else if (event.code == "KeyW" && opponentY > 0) {
+        //        velocityY = playerSpeed;
+        //    } else if (event.code == "KeyS" && opponentY + opponentHeight < board.height) {
+        //        velocityY = -playerSpeed;
+        //    }
+        //}
     }
 
-    function stopMovment() {
-        velocityY = 0;
+    function stopMovment(event) {
+        if (event.code == "ArrowUp") {
+            opponentVelocity = 0; 
+        } else if (event.code == "ArrowDown") {
+            opponentVelocity = 0;
+        } else if (event.code == "KeyW") {
+            velocityY = 0; 
+        } else if (event.code == "KeyS") {
+            velocityY = 0;
+        }
+
     }
 
     function increaseBallSpeed() {
@@ -238,7 +251,7 @@ export function custom(
 
     function checkIfGameEnded() {
         if(playerScore == 3){
-            alert("You won with "+botDifficulty+ " bot! Congratulations!");
+            alert("Player one won! Congratulations!");
             clearInterval(updateInterval);
             board.style.display = "none";
             pvpMode.style.display = "block";
@@ -247,7 +260,7 @@ export function custom(
             sandboxMode.style.display = "block";
             callback("game-won");
         } else if (opponentScore == 3){
-            alert("You lost with "+botDifficulty+" bot! Try again!");
+            alert("Player two won! Congratulations!");
             clearInterval(updateInterval);
             board.style.display = "none";
             pvpMode.style.display = "block";

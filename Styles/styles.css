@@ -4,6 +4,17 @@
     text-align: center;
     margin: 0;
     font-family: Arial;
+    /* Disable text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version currently supported by Chrome and Opera */
+}
+
+h1, h2, h3, h4, h5, h6{
+    cursor: default;
 }
 
 img{
@@ -75,8 +86,8 @@ img{
     position: absolute;
     height: 600px;
     width: 900px;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     margin-top: 75px;
     background: linear-gradient(135deg, #ff00e1, #00f7ef);
     border-radius: 10%;
@@ -104,8 +115,8 @@ img{
 
 #level-specs{
     position: absolute;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     margin-top: 40px;
     width: 600px;
     height: 500px;
@@ -117,8 +128,8 @@ img{
     position: absolute;
     color: white;
     font-size: 5em;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     top: 4%;
 } #start-level{
     position: absolute;
@@ -127,8 +138,8 @@ img{
     height: 100px;
     width: 250px;
     font-size: 4em;
-    left: 72%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 72%; 
+    transform: translateX(-50%); 
     border: 3px white solid;
     border-radius: 20%;
     bottom: 5%;
@@ -139,8 +150,8 @@ img{
     height: 100px;
     width: 250px;
     font-size: 4em;
-    left: 27%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 27%; 
+    transform: translateX(-50%); 
     border: 3px white solid;
     border-radius: 20%;
     bottom: 5%;
@@ -149,8 +160,8 @@ img{
     width: 550px;
     font-size: 1.4em;
     color: white;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     top: 35%;
 }
 
@@ -162,8 +173,8 @@ img{
     position: absolute;
     height: 600px;
     width: 1000px;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     margin-top: 75px;
     background: linear-gradient(135deg, #ff00e1, #00f7ef);
     border-radius: 10%;
@@ -180,62 +191,100 @@ img{
     border-radius: 15%;
     padding: 10px;
     top: 0%;
-    left: 15%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 15%; 
+    transform: translateX(-50%); 
     margin-top: 40px;
 }#bot-color{
     top: 23%;
-    left: 15%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 15%; 
+    transform: translateX(-50%); 
     margin-top: 40px;
 }#player-color{
     top: 33%;
-    left: 15%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 15%; 
+    transform: translateX(-50%); 
     margin-top: 40px;
 } #player-paddle-size{
-    left: 15%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 15%; 
+    transform: translateX(-50%); 
     margin-top: 250px;
 } #player-paddle-size h2{
     color: white;
     font-size: 1em;
     margin-top: 20px;
-} #mlg-mode{
-    left: 33%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+} #opponent-paddle-size{
+    width: 240px;
+    left: 82%; 
+    transform: translateX(-50%); 
+    margin-top: 250px;
+} #opponent-paddle-size h2{
+    color: white;
+    font-size: 1em;
     margin-top: 20px;
+} #mlg-mode{
+    left: 30%; 
+    transform: translateX(-50%); 
+    margin-top: 400px;
 } #mirror-mode{
-    left: 33%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 120px;
+    left: 36%; 
+    transform: translateX(-50%); 
+    margin-top: 130px;
 }#ball-size{
     border: white 3px solid;
     border-radius: 15%;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 20px;
-} #oponent-speed{
+    left: 35%; 
+    transform: translateX(-50%); 
+    margin-top: 3px;
+} #opponent-speed{
     padding: 5px;
     border: white 3px solid;
     border-radius: 15%;
-    left: 36%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 230px;
+    left: 36%; 
+    transform: translateX(-50%); 
+    margin-top: 240px;
+} #player-speed{
+    padding: 5px;
+    border: white 3px solid;
+    border-radius: 15%;
+    left: 55%; 
+    transform: translateX(-50%); 
+    margin-top: 3px;
 } #ball-color{
-    left: 56%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 56%; 
+    transform: translateX(-50%); 
     margin-top: 330px;
 } #text-color {
-    left: 56%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 210px;
+    left: 56%; 
+    transform: translateX(-50%); 
+    margin-top: 150px;
 } #board-color {
-    left: 56%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
-    margin-top: 270px;
+    left: 56%; 
+    transform: translateX(-50%); 
+    margin-top: 240px;
 }
 
+#choose-pvp-pvc{
+    position: inherit;
+    left: 73%; 
+    transform: translateX(-50%); 
+} #custom-pvc{
+    position: inherit;
+    left: 80%; 
+    background-color: lightgreen;
+} .pvp-pvc{
+    border: 3px white solid;
+    height: 200px;
+    width: 140px;
+    margin-left: 40px;
+    background-color: red;
+    font-weight: 900;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.checkbox{
+    cursor: pointer;
+}
 .option-header{
     color: white;
     font-size: 1.4em;
@@ -243,6 +292,7 @@ img{
 .option-slider{
     height: 50px;
     width: 150px;
+    cursor: pointer;
 }
 .slider-value{
     font-size: 1.3em;
@@ -261,8 +311,8 @@ img{
 }
 
 #start-custom-game{
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     margin-top: 400px;
 }
 
@@ -273,6 +323,7 @@ img{
     color: white;
     font-size: 4em;
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 #close{
@@ -310,20 +361,19 @@ img{
     display: none;
     position: absolute;
     margin-top: 20px;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
 }
 
 #result{
     color: white;
     margin-top: 50px;
 }
-
 #created-by-text{
     position: absolute;
     bottom: 20px;
-    left: 50%; /* Horizontally center the element */
-    transform: translateX(-50%); /* Adjust to center the element properly */
+    left: 50%; 
+    transform: translateX(-50%); 
     font-size: 1.5em;
     color: white;
     font-weight: bold;

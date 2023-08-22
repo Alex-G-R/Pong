@@ -2,6 +2,7 @@
 import { pvp } from "./pvp.js";
 import { setup } from "./setup.js"
 import { custom } from "./custom.js"
+import { customPvp } from "./customPvp.js"
 
 
 // Button click event handlers
@@ -125,19 +126,20 @@ sandBack.addEventListener("click", e =>{
 
 //sandbox
 
+
+// Ball acceleration rate
 const ballSlider = document.getElementById("ball-speed-slider");
 const ballSpeedValue = document.getElementById("ball-speed-value");
 
-// Initialize the ball speed value display
-ballSpeedValue.textContent = ballSlider.value;
+ballSpeedValue.textContent = ballSlider.value/1000;
 
-// Add an event listener to update the display when the slider value changes
 ballSlider.addEventListener("input", e => {
     ballSpeedValue.textContent = parseInt(ballSlider.value)/1000;
 });
 
 
 
+// Player paddle sizes width & height
 const pWidthSlider = document.getElementById("player-width-slider");
 const pHeightSlider = document.getElementById("player-height-slider");
 
@@ -155,45 +157,94 @@ pHeightSlider.addEventListener("input", e => {
 });
 
 
+// opponent paddle sizes width & height
+const oWidthSlider = document.getElementById("opponent-width-slider");
+const oHeightSlider = document.getElementById("opponent-height-slider");
 
+const oWidthValue = document.getElementById("opponent-paddle-width");
+const oHeightValue = document.getElementById("opponent-paddle-height");
+
+oWidthValue.textContent = oWidthSlider.value;
+oHeightValue.textContent = oHeightSlider.value;
+
+oWidthSlider.addEventListener("input", e => {
+    oWidthValue.textContent = oWidthSlider.value;
+});
+oHeightSlider.addEventListener("input", e => {
+    oHeightValue.textContent = oHeightSlider.value;
+});
+
+
+
+// Ball size
 const ballSizeSlider = document.getElementById("ball-size-slider");
 const ballSizeValue = document.getElementById("ball-size-value");
 
-// Initialize the ball speed value display
 ballSizeValue.textContent = ballSizeSlider.value;
 
-// Add an event listener to update the display when the slider value changes
 ballSizeSlider.addEventListener("input", e => {
     ballSizeValue.textContent = ballSizeSlider.value;
 });
 
 
 
-
+// Bot speed
 const botSpeedSlider = document.getElementById("bot-speed-slider");
 const botSpeedValue = document.getElementById("bot-speed-value");
 
-// Initialize the ball speed value display
 botSpeedValue.textContent = botSpeedSlider.value;
 
-// Add an event listener to update the display when the slider value changes
 botSpeedSlider.addEventListener("input", e => {
     botSpeedValue.textContent = botSpeedSlider.value;
 });
 
+
+// Player speed
+const playerSpeedSlider = document.getElementById("player-speed-slider");
+const playerSpeedValue = document.getElementById("player-speed-value");
+
+playerSpeedValue.textContent = playerSpeedSlider.value;
+
+playerSpeedSlider.addEventListener("input", e => {
+    playerSpeedValue.textContent = playerSpeedSlider.value;
+});
+
+// modifiers
 const mlg = document.getElementById("mlg-toggle");
 const mirror = document.getElementById("mirror-toggle");
 
+// Color changing
 const botColorInput = document.getElementById("bot-color-input");
 const playerColorInput = document.getElementById("player-color-input");
 const ballColorInput = document.getElementById("ball-color-input");
+const textColorInput = document.getElementById("text-color-input");
+const bgColorInput = document.getElementById("board-color-input");
+
+
+// custom choice pvp/pvc
+const customPVP = document.getElementById("custom-pvp");
+const customPVC = document.getElementById("custom-pvc");
+let pvc = true;
+
+customPVC.addEventListener("click", () => {
+    customPVP.style.backgroundColor = "red";
+    customPVC.style.backgroundColor = "lightgreen";
+    pvc = true;
+})
+
+customPVP.addEventListener("click", () => {
+    customPVP.style.backgroundColor = "lightgreen";
+    customPVC.style.backgroundColor = "red";
+    pvc = false;
+})
 
 //strat custom game
 
 const startCustomGameButton = document.getElementById("start-custom-button");
 
 startCustomGameButton.addEventListener("click", () => {
-    custom("Custom", // Bot name
+    if(!pvc){
+        customPvp(
         parseInt(botSpeedSlider.value), // botSpeed
         parseInt(ballSlider.value)/1000, // BallAcceleration on bounce
         botColorInput.value , // color of the bot paddle
@@ -204,8 +255,36 @@ startCustomGameButton.addEventListener("click", () => {
         mirror.checked, // mirror mode, reversed controls
         true, // Unlocks changing width and height of player paddle
         parseInt(pWidthSlider.value), // player paddle width
-        parseInt(pHeightSlider.value)), // player paddle height
-        ballColorInput.value // color of the ball
+        parseInt(pHeightSlider.value), // player paddle height
+        ballColorInput.value, // color of the ball
+        textColorInput.value, // color of the score text
+        bgColorInput.value, // color of the bacground
+        parseInt(playerSpeedSlider.value), // player paddle speed
+        parseInt(oHeightSlider.value), // opponent paddle height
+        parseInt(oWidthSlider.value), // opponent paddle width
+        ) 
+    } else{
+        custom(
+        "Custom", // Bot name
+        parseInt(botSpeedSlider.value), // botSpeed
+        parseInt(ballSlider.value)/1000, // BallAcceleration on bounce
+        botColorInput.value , // color of the bot paddle
+        playerColorInput.value, // color of the player paddle
+        mlg.checked, // toggle MLG mode (flashy)
+        parseInt(ballSizeSlider.value), // Ball size
+        handleGameOutcome, 
+        mirror.checked, // mirror mode, reversed controls
+        true, // Unlocks changing width and height of player paddle
+        parseInt(pWidthSlider.value), // player paddle width
+        parseInt(pHeightSlider.value), // player paddle height
+        ballColorInput.value, // color of the ball
+        textColorInput.value, // color of the score text
+        bgColorInput.value, // color of the bacground
+        parseInt(playerSpeedSlider.value), // player paddle speed
+        parseInt(oHeightSlider.value), // opponent paddle height
+        parseInt(oWidthSlider.value), // opponent paddle width
+        ) 
+    }
 });
 
 
@@ -262,40 +341,40 @@ levelFour.addEventListener("click", e => {
     selectedLevel = 4;
 });
 
-/*
+
 levelFive.addEventListener("click", e => {
-    levelNumber.innerHTML = "Level 5";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelNumber.innerHTML = "soon";
+    levelDescr.innerHTML = "soon";
     levelHardnes.value = "Hard";
     levelHardnes.style.backgroundColor = "rgb(213, 0, 0)";
     selectedLevel = 5;
 });
 
 levelSix.addEventListener("click", e => {
-    levelNumber.innerHTML = "Level 6";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelNumber.innerHTML = "soon";
+    levelDescr.innerHTML = "soon";
     levelHardnes.value = "Insane";
     levelHardnes.style.backgroundColor = "rgb(88, 0, 0)";
     selectedLevel = 6;
 });
 
 levelSeven.addEventListener("click", e => {
-    levelNumber.innerHTML = "Level 7";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelNumber.innerHTML = "soon";
+    levelDescr.innerHTML = "soon";
     levelHardnes.value = "Insane";
     levelHardnes.style.backgroundColor = "rgb(88, 0, 0)";
     selectedLevel = 7;
 });
 
 levelEight.addEventListener("click", e => {
-    levelNumber.innerHTML = "Level 8";
-    levelDescr.innerHTML = "In this level everytime ball bounces off anything it will change color! But not just the ball!<br> Everything will change colors constantly! You better watch out, because it will be easy to lose focus.";
+    levelNumber.innerHTML = "soon";
+    levelDescr.innerHTML = "soon";
     levelHardnes.value = "Impossible";
     levelHardnes.style.fontSize = "3em";
     levelHardnes.style.backgroundColor = "black";
     selectedLevel = 8;
 });
-*/
+
 
 // Start campain levels
 const startLevel = document.getElementById("start-level");

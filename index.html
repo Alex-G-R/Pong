@@ -49,7 +49,7 @@
                 </div>
 
                 <div id="bot-color" class="option">
-                    <h1 class="option-header">Bot color</h1>
+                    <h1 class="option-header">Opponent color</h1>
                     <input type="text" placeholder="Enter bot color:" id="bot-color-input" value="red">
                 </div>
 
@@ -63,6 +63,17 @@
                     <input type="text" placeholder="Enter ball color:" id="ball-color-input" value="blue">
                 </div>
 
+                <div id="board-color" class="option">
+                    <h1 class="option-header">Background color</h1>
+                    <input type="text" placeholder="Enter background color:" id="board-color-input" value="black">
+                </div>
+
+                <div id="text-color" class="option">
+                    <h1 class="option-header">Text color</h1>
+                    <input type="text" placeholder="Enter text color:" id="text-color-input" value="white">
+                </div>
+
+
                 <div id="player-paddle-size" class="option">
                     <h1 class="option-header">Player paddle size</h1>
                     <h2>Width</h2>
@@ -73,14 +84,24 @@
                     <div id="player-paddle-height" class="slider-value">150</div>
                 </div>
 
+                <div id="opponent-paddle-size" class="option">
+                    <h1 class="option-header">Opponent paddle size</h1>
+                    <h2>Width</h2>
+                    <input type="range" min="1" max="100" value="20" id="opponent-width-slider" class="option-slider"/>
+                    <div id="opponent-paddle-width" class="slider-value">20</div>
+                    <h2>Height</h2>
+                    <input type="range" min="1" max="500" value="150" id="opponent-height-slider" class="option-slider"/>
+                    <div id="opponent-paddle-height" class="slider-value">150</div>
+                </div>
+
                 <div id="mlg-mode" class="option">
                     <h1 class="option-header">Toggle MLG</h1>
-                    <input type="checkbox" id="mlg-toggle"/>
+                    <input type="checkbox" id="mlg-toggle" class="checkbox"/>
                 </div>
 
                 <div id="mirror-mode" class="option">
-                    <h1 class="option-header">Toggle mirror</h1>
-                    <input type="checkbox" id="mirror-toggle"/>
+                    <h1 class="option-header">Toggle mirror mode</h1>
+                    <input type="checkbox" id="mirror-toggle" class="checkbox"/>
                 </div>
                 
                 <div id="ball-size" class="option">
@@ -89,10 +110,21 @@
                     <div id="ball-size-value" class="slider-value">20</div>
                 </div>
 
-                <div id="oponent-speed" class="option">
-                    <h1 class="option-header">Oponent Speed</h1>
-                    <input type="range" min="1" max="25" value="7" id="bot-speed-slider" class="option-slider"/>
-                    <div id="bot-speed-value" class="slider-value">7</div>
+                <div id="opponent-speed" class="option">
+                    <h1 class="option-header">Opponent Speed</h1>
+                    <input type="range" min="1" max="25" value="5" id="bot-speed-slider" class="option-slider"/>
+                    <div id="bot-speed-value" class="slider-value">5</div>
+                </div>
+
+                <div id="player-speed" class="option">
+                    <h1 class="option-header">Player Speed</h1>
+                    <input type="range" min="1" max="25" value="5" id="player-speed-slider" class="option-slider"/>
+                    <div id="player-speed-value" class="slider-value">7</div>
+                </div>
+
+                <div id="choose-pvp-pvc" class="option">
+                    <input type="button" id="custom-pvp" class="pvp-pvc" value="PVP">
+                    <input type="button" id="custom-pvc" class="pvp-pvc" value="BOT">
                 </div>
 
                 <div id="start-custom-game" class="option">
@@ -110,36 +142,36 @@
                         <h1>1</h1>
                     </div>
     
-                    <!--<div id="level-five" class="level">
-                        <h1>Soon</h1>
-                    </div> -->
+                    <div id="level-five" class="level">
+                        <h1>?</h1>
+                    </div> 
                 </div><br>
                 <div id="row-two">
                     <div id="level-two" class="level">
                         <h1>2</h1>
                     </div>
     
-                    <!--<div id="level-six" class="level">
-                        <h1>Soon</h1>
-                    </div> -->
+                    <div id="level-six" class="level">
+                        <h1>?</h1>
+                    </div> 
                 </div>
                 <div id="row-three">
                     <div id="level-three" class="level">
                         <h1>3</h1>
                     </div>
     
-                    <!--<div id="level-seven" class="level">
-                        <h1>Soon</h1>
-                    </div> -->
+                    <div id="level-seven" class="level">
+                        <h1>?</h1>
+                    </div> 
                 </div>
                 <div id="row-seven">
                     <div id="level-four" class="level">
                         <h1>4</h1>
                     </div>
     
-                    <!--div id="level-eight" class="level">
-                        <h1>Soon</h1>
-                    <div> -->
+                    <div id="level-eight" class="level">
+                        <h1>?</h1>
+                    </div>
                 </div>
             </div>
         </div>
