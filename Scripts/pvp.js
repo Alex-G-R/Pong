@@ -155,25 +155,25 @@ export function pvp() {
     }
 
     function changeDirection(event) {
-        if (event.code == "ArrowUp" && playerY > 0) {
+        if (event.code == "KeyW" && playerY > 0) {
             velocityY = -5;
-        } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+        } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
             velocityY = 5;
-        } else if (event.code == "KeyW" && opponentY > 0) {
+        } else if (event.code == "ArrowUp" && opponentY > 0) {
             opponentSpeed = -5; 
-        } else if (event.code == "KeyS" && opponentY + opponentHeight < board.height) {
+        } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
             opponentSpeed = 5;
         }
     }
 
     function stopMovment(event) {
-        if (event.code == "ArrowUp") {
+        if (event.code == "KeyW") {
             velocityY = 0;
-        } else if (event.code == "ArrowDown") {
-            velocityY = 0;
-        } else if (event.code == "KeyW") {
-            opponentSpeed = 0; 
         } else if (event.code == "KeyS") {
+            velocityY = 0;
+        } else if (event.code == "ArrowUp") {
+            opponentSpeed = 0; 
+        } else if (event.code == "ArrowDown") {
             opponentSpeed = 0;
         }
 

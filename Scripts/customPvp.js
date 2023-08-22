@@ -189,28 +189,29 @@ export function customPvp(
     }
 
     function changeDirection(event) {
-        //if(!mirrorMode){
-        if (event.code == "ArrowUp" && opponentY > 0) {
-            opponentVelocity = -opponentSpeed;
-        } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
-            opponentVelocity = opponentSpeed;
+        if(!mirrorMode){
+            if (event.code == "ArrowUp" && opponentY > 0) {
+                opponentVelocity = -opponentSpeed;
+            } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
+                opponentVelocity = opponentSpeed;
+            }
+            else if (event.code == "KeyW" && playerY > 0) {
+                velocityY = -playerSpeed;
+            } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
+                velocityY = playerSpeed;
+            }
+        } else {
+            if (event.code == "ArrowUp" && opponentY > 0) {
+                opponentVelocity = opponentSpeed;
+            } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
+                opponentVelocity = -opponentSpeed;
+            }
+            else if (event.code == "KeyW" && playerY > 0) {
+                velocityY = playerSpeed;
+            } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
+                velocityY = -playerSpeed;
+            }
         }
-        else if (event.code == "KeyW" && playerY > 0) {
-            velocityY = -playerSpeed;
-        } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
-            velocityY = playerSpeed;
-        }
-        //} else {
-        //    if (event.code == "ArrowUp" && playerY > 0) {
-        //        opponentSpeed = opponentSpeed;
-        //    } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
-        //        opponentSpeed = -opponentSpeed;
-        //    } else if (event.code == "KeyW" && opponentY > 0) {
-        //        velocityY = playerSpeed;
-        //    } else if (event.code == "KeyS" && opponentY + opponentHeight < board.height) {
-        //        velocityY = -playerSpeed;
-        //    }
-        //}
     }
 
     function stopMovment(event) {
