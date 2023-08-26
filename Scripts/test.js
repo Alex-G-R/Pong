@@ -1,10 +1,10 @@
-export function customPvp(
+export function startCustomGame(
     opponentSpeed, ballAcceleration, botColor, playerColor,
     randomiseColors, ballSizeInput, callback, mirrorMode, changePaddleSize,
     paddleWidth, paddleHeight, ballColor, textColor, boardColor, playerSpeed,
-    opponentH, opponentW
-    ) {
-    
+    opponentH, opponentW, pvp
+) {
+
     // board
     let blockSize = 90;
     let rows = 7;
@@ -16,16 +16,26 @@ export function customPvp(
     let playerWidth = 20;
     let playerHeight = 150;
     let playerX = 60;
-    let playerY = ((rows * blockSize) / 2) - (playerHeight / 2);
+    let playerY = ((rows * blockSize) / 2) - (playerHeight / 2); // Place the player paddle on the vertical middle
     let velocityY = 0;
 
-    // playerTwo
-    let opponentWidth = 20;
-    let opponentHeight = 150;
-    let opponentX = (cols * blockSize) - 60;
-    let opponentY = ((rows * blockSize) / 2) - (playerHeight / 2);;
-    let opponentVelocity = 0; // Speed of the opponent
-    
+    if(!pvp){
+        // opponent Bot
+        let opponentWidth = 20;
+        let opponentHeight = 150;
+        let opponentX;
+        let opponentY;
+        let opponentVelocity; // declar speed of the opponent
+        opponentVelocity = opponentSpeed; // Set speed of the opponent
+    } else {
+        // playerTwo
+        let opponentWidth = 20;
+        let opponentHeight = 150;
+        let opponentX = (cols * blockSize) - 60;
+        let opponentY = ((rows * blockSize) / 2) - (playerHeight / 2);;
+        let opponentVelocity = 0; // Speed of the opponent
+    }
+
     // ball
     let ballSize;
     ballSize = ballSizeInput;
@@ -33,7 +43,6 @@ export function customPvp(
     let ballY;
     let ballVelocityX = 4;
     let ballVelocityY = 2;
-
 
     // game variables
     let playerScore = 0;
@@ -61,6 +70,7 @@ export function customPvp(
     board.height = rows * blockSize;
     board.width = cols * blockSize;
 
+
     // close game btn
     const closeGame = document.getElementById("close-game-button");
     closeGame.style.display = "block";
@@ -75,24 +85,31 @@ export function customPvp(
         callback("game-closed");
     });
 
+
     // Display board on the screen
     board.style.display = "block";
 
     // Get context
     context = board.getContext('2d'); // used for drawing on the board
 
+
     // ball position 
     ballX = board.width / 2;
     ballY = board.height / 2;
+    
+    if(!pvp){
+        opponentX = board.width - opponentWidth - 60; // Adjust the value as needed
+        opponentY = ((rows * blockSize) / 2) - (opponentHeight / 2);
+    }
 
     // Start the game loop
     let updateInterval;
     updateInterval = setInterval(update, 1000/60); // 60 frames per second / 60fps
 
-
     // Handle movment
     window.addEventListener('keydown', changeDirection);
     window.addEventListener('keyup', stopMovment);
+
 
     function update() {
         // Check if chaning the sizes of player paddle avelibable is true do it
@@ -128,6 +145,17 @@ export function customPvp(
         }
         context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
 
+        if(!pvp){
+            // buffer zone
+            const bufferZone = opponentHeight / 4; 
+
+            // move the opponent towards the ball Y position
+            if (opponentY + opponentHeight / 2 < ballY + ballSize / 2 - bufferZone) {
+                opponentY += Math.min(opponentVelocity, board.height - (opponentY + opponentHeight));
+            } else if (opponentY + opponentHeight / 2 > ballY + ballSize / 2 + bufferZone) {
+                opponentY -= Math.min(opponentVelocity, opponentY);
+            }
+        }
 
         // move the ball
         ballX += ballVelocityX;
@@ -178,18 +206,24 @@ export function customPvp(
 
         // Move the players
         playerY += velocityY;
-        opponentY += opponentVelocity;
+        if(pvp == true){
+            opponentY += opponentVelocity;
+        }
+
         // check if the players are within the board
         if (playerY < 0) {
             playerY = 0;
         } else if (playerY + playerHeight > board.height) {
             playerY = board.height - playerHeight;
         }
-        // opponent
-        if (opponentY < 0) {
-            opponentY = 0;
-        } else if (opponentY + opponentHeight > board.height) {
-            opponentY = board.height - opponentHeight;
+
+        if(pvp == true){
+            // opponent
+            if (opponentY < 0) {
+                opponentY = 0;
+            } else if (opponentY + opponentHeight > board.height) {
+                opponentY = board.height - opponentHeight;
+            }
         }
 
        printScore();
@@ -199,46 +233,74 @@ export function customPvp(
         context.fillStyle = textColor;
         context.font = '24px Arial';
         context.fillText(`Player one: ${playerScore}`, 20, 30);
-        context.fillText(`Player two: ${opponentScore}`, board.width - 200, 30);
+        if(!pvp){
+            context.fillText(`Custom bot: ${opponentScore}`, board.width - 200, 30);
+        } else{
+            context.fillText(`Player two: ${opponentScore}`, board.width - 200, 30);
+        }
     }
 
-    function changeDirection(event) {
-        if(!mirrorMode){
-            if (event.code == "ArrowUp" && opponentY > 0) {
-                opponentVelocity = -opponentSpeed;
-            } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
-                opponentVelocity = opponentSpeed;
+    if(!pvp){
+        function changeDirection(event) {
+            if(!mirrorMode){
+                if (event.code == "ArrowUp" && playerY > 0) {
+                    velocityY = -playerSpeed;
+                } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+                    velocityY = playerSpeed;
+                }
+            } else {
+                if (event.code == "ArrowDown" && playerY > 0) {
+                    velocityY = -playerSpeed;
+                } else if (event.code == "ArrowUp" && playerY + playerHeight < board.height) {
+                    velocityY = playerSpeed;
+                }
             }
-            else if (event.code == "KeyW" && playerY > 0) {
-                velocityY = -playerSpeed;
-            } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
-                velocityY = playerSpeed;
-            }
-        } else {
-            if (event.code == "ArrowUp" && opponentY > 0) {
-                opponentVelocity = opponentSpeed;
-            } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
-                opponentVelocity = -opponentSpeed;
-            }
-            else if (event.code == "KeyW" && playerY > 0) {
-                velocityY = playerSpeed;
-            } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
-                velocityY = -playerSpeed;
+        }
+    } else {
+        function changeDirection(event) {
+            if(!mirrorMode){
+                if (event.code == "ArrowUp" && opponentY > 0) {
+                    opponentVelocity = -opponentSpeed;
+                } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
+                    opponentVelocity = opponentSpeed;
+                }
+                else if (event.code == "KeyW" && playerY > 0) {
+                    velocityY = -playerSpeed;
+                } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
+                    velocityY = playerSpeed;
+                }
+            } else {
+                if (event.code == "ArrowUp" && opponentY > 0) {
+                    opponentVelocity = opponentSpeed;
+                } else if (event.code == "ArrowDown" && opponentY + opponentHeight < board.height) {
+                    opponentVelocity = -opponentSpeed;
+                }
+                else if (event.code == "KeyW" && playerY > 0) {
+                    velocityY = playerSpeed;
+                } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
+                    velocityY = -playerSpeed;
+                }
             }
         }
     }
 
-    function stopMovment(event) {
-        if (event.code == "ArrowUp") {
-            opponentVelocity = 0; 
-        } else if (event.code == "ArrowDown") {
-            opponentVelocity = 0;
-        } else if (event.code == "KeyW") {
-            velocityY = 0; 
-        } else if (event.code == "KeyS") {
+    if(!pvp){
+        function stopMovment() {
             velocityY = 0;
         }
-
+    } else {
+        function stopMovment(event) {
+            if (event.code == "ArrowUp") {
+                opponentVelocity = 0; 
+            } else if (event.code == "ArrowDown") {
+                opponentVelocity = 0;
+            } else if (event.code == "KeyW") {
+                velocityY = 0; 
+            } else if (event.code == "KeyS") {
+                velocityY = 0;
+            }
+    
+        }
     }
 
     function increaseBallSpeed() {
@@ -264,27 +326,53 @@ export function customPvp(
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }
 
-    function checkIfGameEnded() {
-        if(playerScore == 3){
-            alert("Player one won! Congratulations!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            pvcMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            closeGame.style.display = "none";
-            callback("game-won");
-        } else if (opponentScore == 3){
-            alert("Player two won! Congratulations!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            pvcMode.style.display = "block";
-            closeGame.style.display = "none";
-            callback("game-lost");
+    if(!pvp){
+        function checkIfGameEnded() {
+            if(playerScore == 3){
+                alert("You won with "+botDifficulty+ " bot! Congratulations!");
+                clearInterval(updateInterval);
+                board.style.display = "none";
+                pvpMode.style.display = "block";
+                campainMode.style.display = "block";
+                pvcMode.style.display = "block";
+                sandboxMode.style.display = "block";
+                closeGame.style.display = "none";
+                callback("game-won");
+            } else if (opponentScore == 3){
+                alert("You lost with "+botDifficulty+" bot! Try again!");
+                clearInterval(updateInterval);
+                board.style.display = "none";
+                pvpMode.style.display = "block";
+                campainMode.style.display = "block";
+                sandboxMode.style.display = "block";
+                pvcMode.style.display = "block";
+                closeGame.style.display = "none";
+                callback("game-lost");
+            }
+        }
+    } else {
+        function checkIfGameEnded() {
+            if(playerScore == 3){
+                alert("Player one won! Congratulations!");
+                clearInterval(updateInterval);
+                board.style.display = "none";
+                pvpMode.style.display = "block";
+                campainMode.style.display = "block";
+                pvcMode.style.display = "block";
+                sandboxMode.style.display = "block";
+                closeGame.style.display = "none";
+                callback("game-won");
+            } else if (opponentScore == 3){
+                alert("Player two won! Congratulations!");
+                clearInterval(updateInterval);
+                board.style.display = "none";
+                pvpMode.style.display = "block";
+                campainMode.style.display = "block";
+                sandboxMode.style.display = "block";
+                pvcMode.style.display = "block";
+                closeGame.style.display = "none";
+                callback("game-lost");
+            }
         }
     }
 
@@ -297,5 +385,4 @@ export function customPvp(
     
         return(randomRGB);
     }
-    
 }

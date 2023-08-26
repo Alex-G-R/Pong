@@ -3,6 +3,7 @@ import { pvp } from "./pvp.js";
 import { setup } from "./setup.js"
 import { custom } from "./custom.js"
 import { customPvp } from "./customPvp.js"
+import { startCustomGame } from "./test.js"
 
 
 // Button click event handlers
