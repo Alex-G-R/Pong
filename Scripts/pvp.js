@@ -226,6 +226,7 @@ export function pvp() {
             pvpMode.style.display = "block";
             pvcMode.style.display = "block";
             sandMode.style.display = "block";
+            closeGame.style.display = "none";
         } else if (opponentScore == 3){  
             alert("Player two won!")
             clearInterval(updateInterval);
@@ -234,6 +235,7 @@ export function pvp() {
             pvpMode.style.display = "block";
             sandMode.style.display = "block";
             pvcMode.style.display = "block";
+            closeGame.style.display = "none";
         }
     }
 

@@ -259,6 +259,7 @@ export function custom(
             campainMode.style.display = "block";
             pvcMode.style.display = "block";
             sandboxMode.style.display = "block";
+            closeGame.style.display = "none";
             callback("game-won");
         } else if (opponentScore == 3){
             alert("You lost with "+botDifficulty+" bot! Try again!");
@@ -268,6 +269,7 @@ export function custom(
             campainMode.style.display = "block";
             sandboxMode.style.display = "block";
             pvcMode.style.display = "block";
+            closeGame.style.display = "none";
             callback("game-lost");
         }
     }
