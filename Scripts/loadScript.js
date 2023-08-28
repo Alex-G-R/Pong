@@ -1,9 +1,9 @@
 
 import { pvp } from "./pvp.js";
 import { setup } from "./setup.js"
-import { custom } from "./custom.js"
-import { customPvp } from "./customPvp.js"
-import { startCustomGame } from "./test.js"
+//import { custom } from "./custom.js"
+//import { customPvp } from "./customPvp.js"
+import { startCustomGame } from "./startCustomGame.js"
 
 
 // Button click event handlers
@@ -285,7 +285,7 @@ const startCustomGameButton = document.getElementById("start-custom-button");
 
 startCustomGameButton.addEventListener("click", () => {
     if(!pvc){
-        customPvp(
+        startCustomGame(
         parseInt(botSpeedSlider.value), // botSpeed
         parseInt(ballSlider.value)/1000, // BallAcceleration on bounce
         botColorInput.value , // color of the bot paddle
@@ -303,10 +303,11 @@ startCustomGameButton.addEventListener("click", () => {
         parseInt(playerSpeedSlider.value), // player paddle speed
         parseInt(oHeightSlider.value), // opponent paddle height
         parseInt(oWidthSlider.value), // opponent paddle width
+        true // PVP
         ) 
     } else{
-        custom(
-        "Custom", // Bot name
+        startCustomGame(
+        //"Custom", // Bot name
         parseInt(botSpeedSlider.value), // botSpeed
         parseInt(ballSlider.value)/1000, // BallAcceleration on bounce
         botColorInput.value , // color of the bot paddle
@@ -324,6 +325,7 @@ startCustomGameButton.addEventListener("click", () => {
         parseInt(playerSpeedSlider.value), // player paddle speed
         parseInt(oHeightSlider.value), // opponent paddle height
         parseInt(oWidthSlider.value), // opponent paddle width
+        false // PVP
         ) 
     }
 });
