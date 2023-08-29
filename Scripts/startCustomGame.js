@@ -348,48 +348,34 @@ export function startCustomGame(
     function checkIfGameEndedPVC() {
         if(playerScore == 3){
             alert("You won with custom bot! Congratulations!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            pvcMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            closeGame.style.display = "none";
+            showMenu();
             callback("game-won");
         } else if (opponentScore == 3){
             alert("You lost with custom bot! Try again!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            pvcMode.style.display = "block";
-            closeGame.style.display = "none";
+            showMenu();
             callback("game-lost");
         }
     }
     function checkIfGameEndedPVP() {
         if(playerScore == 3){
             alert("Player one won! Congratulations!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            pvcMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            closeGame.style.display = "none";
+            showMenu();
             callback("game-won");
         } else if (opponentScore == 3){
             alert("Player two won! Congratulations!");
-            clearInterval(updateInterval);
-            board.style.display = "none";
-            pvpMode.style.display = "block";
-            campainMode.style.display = "block";
-            sandboxMode.style.display = "block";
-            pvcMode.style.display = "block";
-            closeGame.style.display = "none";
+            showMenu();
             callback("game-lost");
         }
+    }
+
+    function showMenu() {
+        clearInterval(updateInterval);
+        board.style.display = "none";
+        pvpMode.style.display = "block";
+        campainMode.style.display = "block";
+        sandboxMode.style.display = "block";
+        pvcMode.style.display = "block";
+        closeGame.style.display = "none";
     }
     
 
