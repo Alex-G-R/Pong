@@ -324,6 +324,8 @@ export function startCustomGame(
 
     function increaseBallSpeed() {
 
+        console.log("Before:", ballVelocityX, ballVelocityY); // Debugging output
+
         if (Math.sign(ballVelocityX) === -1) {
             ballVelocityX = ballVelocityX - ballAcceleration; // Set a fixed value
         } else {
@@ -335,6 +337,8 @@ export function startCustomGame(
         } else {
             ballVelocityY = ballVelocityY + ballAcceleration; // Set a fixed value
         }
+
+        console.log("After:", ballVelocityX, ballVelocityY); // Debugging output
 
         if(randomiseColors == true){
             currentBallColor = randomColor();
@@ -357,7 +361,8 @@ export function startCustomGame(
 
     function resetBall() {
         ballX = board.width / 2;
-        ballY = board.height / 1.73 + Math.random();;
+        ballY = board.height / 1.73 + Math.random();
+        console.log("Ball spawned on Y: "+ballY);
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }

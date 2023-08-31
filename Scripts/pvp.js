@@ -215,7 +215,8 @@ export function pvp() {
 
     function resetBall() {
         ballX = board.width / 2;
-        ballY = board.height / 1.73 + Math.random();;
+        ballY = board.height / 1.73 + Math.random();
+        console.log("Ball spawned on Y: "+ballY);
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }
