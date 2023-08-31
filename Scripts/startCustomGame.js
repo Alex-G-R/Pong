@@ -262,7 +262,11 @@ export function startCustomGame(
     
     function changeDirectionPVC(event) {
         if(!mirrorMode){
-            handleArrowMovment(event);
+            if (event.code == "ArrowUp" && playerY > 0) {
+                velocityY = -playerSpeed;
+            } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+                velocityY = playerSpeed;
+            }
         } else {
             if (event.code == "ArrowDown" && playerY > 0) {
                 velocityY = -playerSpeed;
@@ -274,8 +278,11 @@ export function startCustomGame(
 
     function changeDirectionPVP(event) {
         if(!mirrorMode){
-            handleArrowMovment(event);
-            if (event.code == "KeyW" && playerY > 0) {
+            if (event.code == "ArrowUp" && playerY > 0) {
+                velocityY = -playerSpeed;
+            } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+                velocityY = playerSpeed;
+            } else if (event.code == "KeyW" && playerY > 0) {
                 velocityY = -playerSpeed;
             } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
                 velocityY = playerSpeed;
@@ -294,13 +301,13 @@ export function startCustomGame(
         }
     }
     
-    function handleArrowMovment(event) {
-        if (event.code == "ArrowUp" && playerY > 0) {
-            velocityY = -playerSpeed;
-        } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
-            velocityY = playerSpeed;
-        }
-    }
+    //function handleArrowMovment(event) {
+    //    if (event.code == "ArrowUp" && playerY > 0) {
+    //        velocityY = -playerSpeed;
+    //    } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
+    //        velocityY = playerSpeed;
+    //    }
+    //}
     
 
     function stopMovmentPVC() {
