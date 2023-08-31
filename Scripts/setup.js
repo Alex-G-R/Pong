@@ -4,6 +4,8 @@ export function setup(
     // Campain
     randomiseColors, smallBall, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
     ) {
+
+    
     
     // board
     let blockSize = 90;
@@ -267,6 +269,7 @@ export function setup(
             sandboxMode.style.display = "block";
             closeGame.style.display = "none";
             callback("game-won");
+            document.title = "Pong game ~ Main menu";
         } else if (opponentScore == 3){
             alert("You lost with "+botDifficulty+" bot! Try again!");
             clearInterval(updateInterval);
@@ -277,6 +280,7 @@ export function setup(
             pvcMode.style.display = "block";
             closeGame.style.display = "none";
             callback("game-lost");
+            document.title = "Pong game ~ Main menu";
         }
     }
 

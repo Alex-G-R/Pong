@@ -5,6 +5,8 @@ export function startCustomGame(
     opponentH, opponentW, pvp
 ) {
 
+    document.title = "Pong game ~ custom game";
+
     // board
     let blockSize = 90;
     let rows = 7;
@@ -367,10 +369,12 @@ export function startCustomGame(
             alert("Player one won! Congratulations!");
             showMenu();
             callback("game-won");
+            document.title = "Pong game ~ Main menu";
         } else if (opponentScore == 3){
             alert("Player two won! Congratulations!");
             showMenu();
             callback("game-lost");
+            document.title = "Pong game ~ Main menu";
         }
     }
 

@@ -1,5 +1,7 @@
 export function pvp() {
 
+    document.title = "Pong game ~ playing pvp";
+
     // board
     let blockSize = 90;
     let rows = 7;
@@ -227,6 +229,7 @@ export function pvp() {
             pvcMode.style.display = "block";
             sandMode.style.display = "block";
             closeGame.style.display = "none";
+            document.title = "Pong game ~ Main menu";
         } else if (opponentScore == 3){  
             alert("Player two won!")
             clearInterval(updateInterval);
@@ -236,6 +239,7 @@ export function pvp() {
             sandMode.style.display = "block";
             pvcMode.style.display = "block";
             closeGame.style.display = "none";
+            document.title = "Pong game ~ Main menu";
         }
     }
 
