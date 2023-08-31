@@ -5,7 +5,10 @@ export function setup(
     randomiseColors, smallBall, callback, mirrorMode, smallPaddle, paddleWidth, paddleHeight
     ) {
 
-    
+    let currentBallColor = "blue";
+    let currentOponentColor = botColor;
+    let currentPlayerColor = "white";
+    let currentBoardColor = "black";
     
     // board
     let blockSize = 90;
@@ -106,31 +109,18 @@ export function setup(
             playerHeight = paddleHeight;
         }
 
-        if(!randomiseColors){
-            context.fillStyle = 'black';
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentBoardColor;
         context.fillRect(0, 0, board.width, board.height);
         
-        if(!randomiseColors){
-            context.fillStyle = 'white';
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentPlayerColor;
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
 
         if(!border){
-            if(!randomiseColors){
-                context.fillStyle = botColor;
-            } else {
-                context.fillStyle = randomColor();
-            }
+            context.fillStyle = currentOponentColor;
             context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
         } else {
             context.fillStyle = 'white';
             context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
-
 
             context.fillStyle = 'white';
             context.fillRect(opponentX - 2, opponentY - 2, opponentWidth + 4, opponentHeight + 4);
@@ -189,11 +179,7 @@ export function setup(
         }
 
         // draw the ball
-        if(!randomiseColors){
-            context.fillStyle = 'blue';
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentBallColor;
         context.fillRect(ballX, ballY, ballSize, ballSize);
 
         playerY += velocityY;
@@ -250,6 +236,24 @@ export function setup(
         }
 
         console.log("After:", ballVelocityX, ballVelocityY); // Debugging output
+
+        if(randomiseColors == true){
+            currentBallColor = randomColor();
+            context.fillStyle = currentBallColor;
+            context.fillRect(ballX, ballY, ballSize, ballSize);
+
+            currentOponentColor = randomColor();
+            context.fillStyle = currentOponentColor;
+            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+
+            currentPlayerColor = randomColor();
+            context.fillStyle = currentPlayerColor;
+            context.fillRect(playerX, playerY, playerWidth, playerHeight);
+
+            currentBoardColor = randomColor();
+            context.fillStyle = currentBoardColor;
+            context.fillRect(0, 0, board.width, board.height);
+        }
     }
 
     function resetBall() {
