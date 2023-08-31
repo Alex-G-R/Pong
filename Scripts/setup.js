@@ -258,7 +258,7 @@ export function setup(
 
     function resetBall() {
         ballX = board.width / 2;
-        ballY = board.height / 2;
+        ballY = board.height / 1.73 + Math.random();;
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
     }
