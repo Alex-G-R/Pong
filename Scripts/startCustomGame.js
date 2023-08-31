@@ -10,6 +10,11 @@ export function startCustomGame(
         document.title = "Pong game ~ Custom PvP game";
     }
 
+    let currentBallColor = ballColor;
+    let currentOponentColor = botColor;
+    let currentPlayerColor = playerColor;
+    let currentBoardColor = boardColor;
+
     // board
     let blockSize = 90;
     let rows = 7;
@@ -138,28 +143,16 @@ export function startCustomGame(
         }
 
         // Draw the bacground
-        if(!randomiseColors){
-            context.fillStyle = boardColor;
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentBoardColor;
         context.fillRect(0, 0, board.width, board.height);
 
         // Draw the player paddle
-        if (!randomiseColors) {
-            context.fillStyle = playerColor;
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentPlayerColor;
         context.fillRect(playerX, playerY, playerWidth, playerHeight);
         
         
         // Draw the opponent paddle
-        if (!randomiseColors) {
-            context.fillStyle = botColor;
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentOponentColor;
         context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
 
         if(!pvp){
@@ -222,11 +215,7 @@ export function startCustomGame(
         }
 
         // draw the ball
-        if(!randomiseColors){
-            context.fillStyle = ballColor;
-        } else {
-            context.fillStyle = randomColor();
-        }
+        context.fillStyle = currentBallColor;
         context.fillRect(ballX, ballY, ballSize, ballSize);
 
         // Move the players
@@ -347,6 +336,23 @@ export function startCustomGame(
             ballVelocityY = ballVelocityY + ballAcceleration; // Set a fixed value
         }
 
+        if(randomiseColors == true){
+            currentBallColor = randomColor();
+            context.fillStyle = currentBallColor;
+            context.fillRect(ballX, ballY, ballSize, ballSize);
+
+            currentOponentColor = randomColor();
+            context.fillStyle = currentOponentColor;
+            context.fillRect(opponentX, opponentY, opponentWidth, opponentHeight);
+
+            currentPlayerColor = randomColor();
+            context.fillStyle = currentPlayerColor;
+            context.fillRect(playerX, playerY, playerWidth, playerHeight);
+
+            currentBoardColor = randomColor();
+            context.fillStyle = currentBoardColor;
+            context.fillRect(0, 0, board.width, board.height);
+        }
     }
 
     function resetBall() {
