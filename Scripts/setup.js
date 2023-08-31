@@ -258,7 +258,11 @@ export function setup(
 
     function resetBall() {
         ballX = board.width / 2;
-        ballY = board.height / 1.73 + Math.random();
+        if(Math.random() < 0.5){
+            ballY = board.height / (1.69 + Math.random()) + Math.floor(Math.random()*10);
+        } else {
+            ballY = board.height / (1.79 - Math.random()) - Math.floor(Math.random()*10);
+        }
         console.log("Ball spawned on Y: "+ballY);
         ballVelocityX = Math.sign(ballVelocityX) * 4;
         ballVelocityY = Math.sign(ballVelocityY) * 2;
