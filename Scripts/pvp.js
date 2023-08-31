@@ -1,6 +1,6 @@
 export function pvp() {
 
-    document.title = "Pong game ~ playing pvp";
+    document.title = "Pong game ~ Playing PvP";
 
     // board
     let blockSize = 90;
@@ -71,6 +71,7 @@ export function pvp() {
         pvcMode.style.display = "block";
         sandMode.style.display = "block";
         closeGame.style.display = "none";
+        document.title = "Pong game ~ Main menu";
     });
 
     // ball position

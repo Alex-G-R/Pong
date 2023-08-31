@@ -4,8 +4,11 @@ export function startCustomGame(
     paddleWidth, paddleHeight, ballColor, textColor, boardColor, playerSpeed,
     opponentH, opponentW, pvp
 ) {
-
-    document.title = "Pong game ~ custom game";
+    if(!pvp){
+        document.title = "Pong game ~ Custom PvC game";
+    } else {
+        document.title = "Pong game ~ Custom PvP game";
+    }
 
     // board
     let blockSize = 90;
@@ -91,6 +94,7 @@ export function startCustomGame(
         pvcMode.style.display = "block";
         closeGame.style.display = "none";
         callback("game-closed");
+        document.title = "Pong game ~ Main menu";
     });
 
 

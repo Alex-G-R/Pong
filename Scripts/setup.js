@@ -82,6 +82,7 @@ export function setup(
         pvcMode.style.display = "block";
         closeGame.style.display = "none";
         callback("game-closed");
+        document.title = "Pong game ~ Main menu";
     });
 
     // ball position and oponent

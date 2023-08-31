@@ -445,16 +445,16 @@ function startCampainLevel(level) {
     campainMenu.style.display = "none";
     // setup(botDifficulty, botSpeed, ballAcceleration, botColor, border, randomiseColors, smallBall, callbackToGameOutcome, mirrorMode)
     if(level == 1){
-        document.title = "Pong game ~ Level 1";
+        document.title = "Pong game ~ Playing Level 1";
         setup("Level one", 3, 0.2, "lightgreen", false, true, false, handleGameOutcome, false, false, false, 0, 0)
     } else if( level == 2) {
-        document.title = "Pong game ~ Level 2";
+        document.title = "Pong game ~ Playing Level 2";
         setup("Level two", 5.5, 0.28, "orange", false, false, true, handleGameOutcome, false, false, false, 0, 0);
     } else if( level == 3) {
-        document.title = "Pong game ~ Level 3";
+        document.title = "Pong game ~ Playing Level 3";
         setup("Level three", 5.5, 0.28, "orange", false, false, false, handleGameOutcome, true, false, false, 0, 0);
     } else if( level == 4) {
-        document.title = "Pong game ~ Level 4";
+        document.title = "Pong game ~ Playing Level 4";
         setup("Level four", 5.5, 0.28, "rgb(213, 0, 0)", false, false, false, handleGameOutcome, false, true, 10, 50);
     }
     // SOON
