@@ -362,9 +362,14 @@ export function startCustomGame(
     function resetBall() {
         ballX = board.width / 2;
         if(Math.random() < 0.5){
-            ballY = board.height / (1.69 + Math.random()) + Math.floor(Math.random()*10);
+            ballY = (board.height / (2 + Math.random()) - Math.floor(Math.random()*10)) - ballSize;
+            
         } else {
-            ballY = board.height / (1.79 - Math.random()) - Math.floor(Math.random()*10);
+            ballY = (board.height / (2 - Math.random()) + Math.floor(Math.random()*10)) - ballSize;
+        }
+        if(ballY > 630 - ballSize){
+            ballY = board.height / 2;
+            console.log("Unexpected ball spawn - ball moved to perfect middle")
         }
         console.log("Ball spawned on Y: "+ballY);
         ballVelocityX = Math.sign(ballVelocityX) * 4;
