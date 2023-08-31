@@ -279,9 +279,9 @@ export function startCustomGame(
     function changeDirectionPVP(event) {
         if(!mirrorMode){
             if (event.code == "ArrowUp" && playerY > 0) {
-                velocityY = -playerSpeed;
+                opponentVelocity = -opponentSpeed;
             } else if (event.code == "ArrowDown" && playerY + playerHeight < board.height) {
-                velocityY = playerSpeed;
+                opponentVelocity = opponentSpeed;
             } else if (event.code == "KeyW" && playerY > 0) {
                 velocityY = -playerSpeed;
             } else if (event.code == "KeyS" && playerY + playerHeight < board.height) {
