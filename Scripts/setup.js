@@ -221,21 +221,21 @@ export function setup(
     }
 
     function increaseBallSpeed() {
-        console.log("Before:", ballVelocityX, ballVelocityY); // Debugging output
+        console.log("Before:", ballVelocityX.toFixed(3), ballVelocityY.toFixed(3)); // Debugging output
 
         if (Math.sign(ballVelocityX) === -1) {
-            ballVelocityX = ballVelocityX - ballAcceleration; // Set a fixed value
+            ballVelocityX = ballVelocityX - 0.3; // Set a fixed value
         } else {
-            ballVelocityX = ballVelocityX + ballAcceleration; // Set a fixed value
+            ballVelocityX = ballVelocityX + 0.3; // Set a fixed value
         }
 
         if (Math.sign(ballVelocityY) === -1) {
-            ballVelocityY = ballVelocityY - ballAcceleration; // Set a fixed value
+            ballVelocityY = ballVelocityY - 0.3; // Set a fixed value
         } else {
-            ballVelocityY = ballVelocityY + ballAcceleration; // Set a fixed value
+            ballVelocityY = ballVelocityY + 0.3; // Set a fixed value
         }
 
-        console.log("After:", ballVelocityX, ballVelocityY); // Debugging output
+        console.log("After:", ballVelocityX.toFixed(3), ballVelocityY.toFixed(3)); // Debugging output
 
         if(randomiseColors == true){
             currentBallColor = randomColor();

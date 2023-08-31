@@ -196,7 +196,7 @@ export function pvp() {
     }
 
     function increaseBallSpeed() {
-        console.log("Before:", ballVelocityX, ballVelocityY); // Debugging output
+        console.log("Before:", ballVelocityX.toFixed(3), ballVelocityY.toFixed(3)); // Debugging output
 
         if (Math.sign(ballVelocityX) === -1) {
             ballVelocityX = ballVelocityX - 0.3; // Set a fixed value
@@ -210,7 +210,7 @@ export function pvp() {
             ballVelocityY = ballVelocityY + 0.3; // Set a fixed value
         }
 
-        console.log("After:", ballVelocityX, ballVelocityY); // Debugging output
+        console.log("After:", ballVelocityX.toFixed(3), ballVelocityY.toFixed(3)); // Debugging output
     }
 
     function resetBall() {
