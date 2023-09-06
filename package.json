@@ -1,0 +1,16 @@
+{
+  "name": "ping-pong",
+  "version": "1.0.0",
+  "description": "Pong game with game modes like PVP, Bots with 5 levels of difficulty, Campain, Level creator with both PVP mode and vsBots",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
