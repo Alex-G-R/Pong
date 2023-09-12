@@ -15,7 +15,7 @@ However in PVP games your controls (Player one) are W and S.
 
 You can try it out <a href="https://alex-g-r.github.io/Pong/" target="_blank">here<a/>!
 
-Good luck and have fun!
+Good luck and have fun playing!
 <br>
 <br>
 To run this app on your PC you need to have some sort of a server.
