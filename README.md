@@ -1,6 +1,6 @@
 # Pong
 
-Pong game with game modes like PVP, Bots with 5 levels of difficulty, Campain, Level creator with both PVP mode and vsBots
+Pong game with game modes like: PVP, Bots with 5 levels of difficulty, Campain, Level creator with both PVP mode and vsBots
 
 PVP Mode - Works just like you would imagine, player one moves by W and S player two moves by arrows
 
